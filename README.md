@@ -2,9 +2,7 @@
 
 ## About this project
 
-This is a design system power that separates the rules and guidance of a design system from the technology underneath it. The power contains all guidelines information needed for Kiro to construct front-end experiences in ShadCN — styles, patterns, paradigms, accessibility, and composition rules — without the need to manage and maintain an underlying technology stack. This ensure standards are met: consistency, centralized solutions to common problems, and more efficient execution against user needs, without the UI framework overhead. 
-
-This is a prepackaged version of the design system scaffold using a curated set of rules and standards. If you would like to build off of these standards with your own rules, standards, and technologies check out our [design system power builder](https://github.com/DAE-UX/design-system-power-builder).
+This is a design system power that separates the rules and guidance of a design system from the technology underneath it. The power contains all guidelines information needed for Kiro to construct front-end experiences in ShadCN — styles, patterns, paradigms, accessibility, and composition rules — without the need to manage and maintain an underlying technology stack. This ensures standards are met: consistency, centralized solutions to common problems, and more efficient execution against user needs, without the UI framework overhead. This is a prepackaged version of the design system scaffold using a curated set of rules and standards. If you would like to build off of these standards with your own rules, standards, and technologies check out our [design system power builder](https://github.com/DAE-UX/design-system-power-builder).
 
 Use it for prototyping, development, or as a stand-in for the design-oriented aspects of a design system.
 
@@ -13,7 +11,7 @@ Use it for prototyping, development, or as a stand-in for the design-oriented as
 Install as a Kiro Power:
 
 ```bash
-cp -r kiro-design-system-power/ ~/.kiro/powers/kiro-design-system-power/
+cp -r design-system-scaffold/ ~/.kiro/powers/design-system-scaffold/
 ```
 
 Or install via Kiro UI: Command Palette → "Powers: Configure" → "Install from folder".
@@ -57,14 +55,14 @@ Trigger: "check accessibility for dialog" or "what are the a11y requirements for
 | [shadCN](https://ui.shadcn.com) | Component library. All component specs are based on shadCN's API, variants, and composition patterns |
 | [Tailwind CSS](https://tailwindcss.com) | Utility-first CSS framework. Theme variables map to Tailwind utilities via `@theme inline` |
 | [Radix UI](https://radix-ui.com) | Headless primitives underneath shadCN components. Referenced for accessibility patterns |
-| [Storybook](https://storybook.js.org) | Component development environment. The skill can generate a full Storybook from component specs |
+| [Storybook](https://storybook.js.org) | Component development environment. The power can generate a full Storybook from component specs |
 | [Motion](https://motion.dev) | Animation library. Used when CSS transitions aren't sufficient |
 | [Lucide](https://lucide.dev) | Icon library (shadCN default). Icon semantics are consistent across themes |
 
 ## Project structure
 
-```
-kiro-design-system-power/
+```text
+design-system-scaffold/
 ├── POWER.md                    — Power metadata and overview
 ├── README.md                   — This file
 └── steering/
@@ -94,7 +92,7 @@ Components reference CSS variables (`var(--foreground)`, `var(--border)`) — ne
 
 ### Design tool integration
 
-You don't need a design tool to use this skill. If you use Figma, shadCN recommends several compatible component libraries — see `design-system.md` → Design Tool Libraries for the current list.
+You don't need a design tool to use this power. If you use Figma, shadCN recommends several compatible component libraries — see `design-system.md` → Design Tool Libraries for the current list.
 
 ### License
 
