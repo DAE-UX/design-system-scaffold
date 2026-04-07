@@ -1,10 +1,10 @@
-# Design System Power
+# Design System Scaffold
 
 ## About this project
 
-This is a design system skill that separates the rules and guidance of a design system from the technology underneath it. A design team manages the standards centrally — styles, patterns, paradigms, accessibility, and composition rules — while engineering teams choose and manage their own technology stack without affecting the core goals: consistency, centralized solutions to common problems, and more efficient execution against user needs.
+This is a design system skill that separates the rules and guidance of a design system from the technology underneath it. The skill contains all guidelines information needed to for Kiro to construct front-end experiences in ShadCN — styles, patterns, paradigms, accessibility, and composition rules — without the need to manage and maintain an underlying technology stack. This ensure standards are met: consistency, centralized solutions to common problems, and more efficient execution against user needs, without the UI framework overhead. This is a prepackaged version of the design system scaffold using a curated set of rules and standards. If you would like to build off of these standards with your own rules, standards, and technologies check out our [design system power builder](https://github.com/DAE-UX/design-system-power-builder).
 
-Use it for prototyping, development, or as a stand-in for the design-oriented aspects of a design system. The underlying component library can differ across teams, but the rules stay the same.
+Use it for prototyping, development, or as a stand-in for the design-oriented aspects of a design system.
 
 ## Getting started
 
