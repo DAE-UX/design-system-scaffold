@@ -1,13 +1,8 @@
-# Design Guidelines — Design System Skill
+# Design Guidelines
 
 > **TL;DR:** UI design heuristics for building interfaces with Design System components. 54 heuristics across 9 domains: cognitive foundations, visual perception, interaction, controls, content structure, typography, media, color science, and accessibility. Use the Task Router to find relevant sections. Use the Verification Checklist after every UI build or review. These guidelines govern UI construction — they do NOT override component specs or theme definitions.
 
 **Dependency:** All product terminology must align with definitions in `guidelines/copywriting/glossary.md`.
-
-**Standards references:**
-- sRGB standards (IEC 61966-2-1)
-- W3C WAI — Accessibility Principles (https://www.w3.org/WAI/fundamentals/accessibility-principles/)
-- W3C WCAG 2.2 (https://www.w3.org/TR/WCAG22/)
 
 ## Scope
 
@@ -415,9 +410,3 @@ When constructing a new component not in the design system library, run the Veri
 **NEVER** apply this workflow to existing design system components or themes. Those specs are authoritative.
 
 ---
-
-## References
-
-- sRGB standards (IEC 61966-2-1)
-- W3C WAI — Accessibility Principles (https://www.w3.org/WAI/fundamentals/accessibility-principles/)
-- W3C WCAG 2.2 (https://www.w3.org/TR/WCAG22/)

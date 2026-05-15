@@ -44,8 +44,6 @@ A tabbed interface for organizing content into selectable panels.
 - Don't use normal/primary/icon buttons for actions in tabs
 - Don't include info links as actions — add within tab content
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -410,31 +408,24 @@ Component organizes Tabs with a variant matrix on the tab item sub-component:
 | Type | Default |
 | State | Default, Focus, Disabled |
 
-- Tabs → TabsList + TabsContent
-- TabsList: secondary bg, rounded, p 4px, inline-flex container
-- Active tab item: background, border (dark), shadow-sm, rounded
-- Inactive tab item: transparent against list background
-- Tab item text: foreground, text-sm, font-medium
-- Tab items arranged horizontally with consistent padding
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--secondary` | `--muted` | TabsList background |
 | `--foreground` | `--foreground` | Tab item text color |
 | `--background` | `--background` | Active tab item background |
 | `--input` | `--input` | Active tab item border (dark mode) |
 | `--ring` | `--ring` | Focus ring color |
 | `--radius` | `border-radius` | TabsList border radius |
-| `p-1` (4px) | `padding` | TabsList internal padding |
-| `px-3` (12px) | `padding` | Tab item horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Tab item font weight |
-| `text-sm` (14px) | `font-size` | Tab item text size |
+| `padding` | `padding` | TabsList internal padding |
+| `padding` (0.75 units) | `padding` | Tab item vertical padding |
+| `padding` | `padding` | Tab item horizontal padding |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Tab item font weight |
+| `--text-sm` | `font-size` | Tab item text size |
 
 ### Theme Behavior
 

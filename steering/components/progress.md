@@ -35,8 +35,6 @@ A horizontal bar that visually indicates the completion progress of a task or pr
 - Don't use multiple progress bars for one operation
 - Don't display success before reaching 100%
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -165,19 +163,16 @@ Component organizes Progress into percentage-based variant states:
 |-----------------|--------|
 | Progress | 0%, 10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% |
 
-- Track uses secondary background with rounded-full border radius
-- Indicator uses primary background with left-side rounded corners matching track
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--secondary` | `--secondary` | Track background |
 | `--primary` | `--primary` | Indicator fill |
-| `h-2` (8px) | `height` | Track height |
-| `rounded-full` | `border-radius` | Track and indicator rounding |
+| `height` | `height` | Track height |
+| `border-radius` | `border-radius` | Track and indicator rounding |
 
 ### Theme Behavior
 

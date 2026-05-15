@@ -36,8 +36,6 @@ A group of toggle buttons that manages single or multiple selection state.
 - Don't use for navigation
 - Don't use without icons
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -288,33 +286,28 @@ Inherits all CSS variable dependencies from Toggle's `toggleVariants`:
 
 ### Component Structure
 
-Component is organized into variant states:
+Component organizes Toggle Group into variant states:
 
 | Variant Property | Values |
 |-----------------|--------|
 | Outlined | True, False |
 
-- Toggle Group → Row of Toggle items (3 items: bold, italic, underline icons)
-- Group container: flex, gap 0, shadow-xs, items joined with shared borders
-- Each Toggle item: background, border, h 36px, px 8px, py 10px
-- First item: rounded left; Last item: rounded right; Middle items: no rounding
-- Outlined=False: no borders, no shadow, transparent background
-- Icons: Lucide icons (bold, italic, underline), 16×16
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--background` | `--background` | Toggle item background (outlined) |
 | `--input` | `--input` | Item border color (outlined) |
 | `--foreground` | `--foreground` | Icon color |
 | `--accent` | `--accent` | Pressed item background |
 | `--accent-foreground` | `--accent-foreground` | Pressed item icon color |
+| `padding` | `padding` | Item horizontal padding |
+| `padding` (2.5 units) | `padding` | Item vertical padding |
+| `padding` | `gap` | Group gap (joined mode) |
 | `--radius` (derived) | `border-radius` | First/last item border radius |
-| `p-2` (8px) | `padding` | Item horizontal padding |
+| `border-width` | `border-width` | Item border width |
 
 ### Theme Behavior
 

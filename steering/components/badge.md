@@ -34,8 +34,6 @@ Displays a small status descriptor or label. Used for tags, statuses, counts, an
 - Don't rely on color alone to indicate severity — supplement with text
 - Don't use badges for "new feature" labels
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -93,6 +91,20 @@ Not applicable — Badge does not use Radix primitives (only Radix Slot for `asC
   <BadgeCheckIcon />
   Verified
 </Badge>
+
+<Badge variant="outline">
+  <BookmarkIcon />
+  Saved
+</Badge>
+```
+
+### With Spinner
+
+```tsx
+<Badge>
+  <Spinner data-icon="inline-start" />
+  Loading
+</Badge>
 ```
 
 ### As Link
@@ -112,11 +124,26 @@ Not applicable — Badge does not use Radix primitives (only Radix Slot for `asC
 <Badge className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums">
   8
 </Badge>
+
+<Badge
+  className="h-5 min-w-5 rounded-full px-1 font-mono tabular-nums"
+  variant="destructive"
+>
+  99
+</Badge>
 ```
 
 ### Custom Colors
 
 ```tsx
+<Badge
+  variant="secondary"
+  className="bg-blue-500 text-white dark:bg-blue-600"
+>
+  <BadgeCheckIcon />
+  Verified
+</Badge>
+
 <Badge className="bg-green-50 text-green-700 dark:bg-green-800 dark:text-green-100">
   Active
 </Badge>
@@ -130,12 +157,12 @@ Not applicable — Badge does not use Radix primitives (only Radix Slot for `asC
 
 | Element | Role / Attribute | Notes |
 |---------|-----------------|-------|
-| Badge | No implicit role | Rendered as `span`. When used as a link (`asChild` with `<a>`), inherits link semantics. |
+| Badge | No implicit role | Rendered as `span` (inline text). When used as a link (`asChild` with `<a>`), inherits link semantics. |
 | Badge (invalid) | `aria-invalid` | Triggers destructive ring styling for error indication |
 
 ### Keyboard Behavior
 
-No keyboard interaction when rendered as `span`. When rendered as a link via `asChild`, standard link keyboard behavior applies. Focus-visible ring appears on keyboard focus.
+No keyboard interaction when rendered as `span`. When rendered as a link via `asChild`, standard link keyboard behavior applies (Enter to activate). Focus-visible ring appears on keyboard focus.
 
 ## HTML
 
@@ -154,11 +181,21 @@ No keyboard interaction when rendered as `span`. When rendered as a link via `as
 </span>
 ```
 
+### As Link
+
+```html
+<a href="/docs" data-slot="badge" data-variant="default">
+  Documentation
+  <svg><!-- arrow icon --></svg>
+</a>
+```
+
 ## CSS
 
 ### Raw CSS
 
 ```css
+/* Badge base */
 .Badge {
   display: inline-flex;
   width: fit-content;
@@ -175,29 +212,96 @@ No keyboard interaction when rendered as `span`. When rendered as a link via `as
   white-space: nowrap;
   transition: color, box-shadow;
 }
-.Badge > svg { pointer-events: none; width: 0.75rem; height: 0.75rem; }
+
+/* Icon sizing */
+.Badge > svg {
+  pointer-events: none;
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Focus visible */
 .Badge:focus-visible {
   border-color: var(--ring);
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--ring) 50%, transparent);
 }
-.Badge[data-variant="default"] { background-color: var(--primary); color: var(--primary-foreground); }
-.Badge[data-variant="secondary"] { background-color: var(--secondary); color: var(--secondary-foreground); }
-.Badge[data-variant="destructive"] { background-color: var(--destructive); color: white; }
-.Badge[data-variant="outline"] { border-color: var(--border); color: var(--foreground); }
-.Badge[data-variant="link"] { color: var(--primary); text-underline-offset: 4px; }
+
+/* Aria invalid */
+.Badge[aria-invalid] {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--destructive) 20%, transparent);
+}
+
+/* Default variant */
+.Badge[data-variant="default"] {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+a.Badge[data-variant="default"]:hover {
+  background-color: color-mix(in srgb, var(--primary) 90%, transparent);
+}
+
+/* Secondary variant */
+.Badge[data-variant="secondary"] {
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+}
+a.Badge[data-variant="secondary"]:hover {
+  background-color: color-mix(in srgb, var(--secondary) 90%, transparent);
+}
+
+/* Destructive variant */
+.Badge[data-variant="destructive"] {
+  background-color: var(--destructive);
+  color: white;
+}
+a.Badge[data-variant="destructive"]:hover {
+  background-color: color-mix(in srgb, var(--destructive) 90%, transparent);
+}
+
+/* Outline variant */
+.Badge[data-variant="outline"] {
+  border-color: var(--border);
+  color: var(--foreground);
+}
+a.Badge[data-variant="outline"]:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Ghost variant */
+.Badge[data-variant="ghost"] {
+  /* No background or border */
+}
+a.Badge[data-variant="ghost"]:hover {
+  background-color: var(--accent);
+  color: var(--accent-foreground);
+}
+
+/* Link variant */
+.Badge[data-variant="link"] {
+  color: var(--primary);
+  text-underline-offset: 4px;
+}
+a.Badge[data-variant="link"]:hover {
+  text-decoration: underline;
+}
 ```
 
 ### Tailwind Mapping
 
 | Element / Variant | Tailwind Classes | Purpose |
 |-------------------|-----------------|---------|
-| Badge (base) | `inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap` | Base layout |
-| default | `bg-primary text-primary-foreground [a&]:hover:bg-primary/90` | Primary colors |
-| secondary | `bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90` | Secondary colors |
-| destructive | `bg-destructive text-white [a&]:hover:bg-destructive/90` | Destructive colors |
-| outline | `border-border text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground` | Border with hover |
-| ghost | `[a&]:hover:bg-accent [a&]:hover:text-accent-foreground` | Transparent with hover |
-| link | `text-primary underline-offset-4 [a&]:hover:underline` | Text with underline |
+| Badge (base) | `inline-flex w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-full border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-[color,box-shadow]` | Base layout and typography |
+| Badge > svg | `[&>svg]:pointer-events-none [&>svg]:size-3` | Icon sizing (12px) |
+| Badge (focus) | `focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50` | Focus ring |
+| Badge (invalid) | `aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40` | Error state ring |
+| default | `bg-primary text-primary-foreground [a&]:hover:bg-primary/90` | Primary colors with hover |
+| secondary | `bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90` | Secondary colors with hover |
+| destructive | `bg-destructive text-white focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40 [a&]:hover:bg-destructive/90` | Destructive colors with dark mode adjustment |
+| outline | `border-border text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground` | Border with accent hover |
+| ghost | `[a&]:hover:bg-accent [a&]:hover:text-accent-foreground` | Transparent with accent hover |
+| link | `text-primary underline-offset-4 [a&]:hover:underline` | Primary text with underline hover |
 
 ## CSS Variable Dependencies
 
@@ -218,6 +322,8 @@ No keyboard interaction when rendered as `span`. When rendered as a link via `as
 
 ### Component Structure
 
+The component contains:
+
 | Variant Property | Values |
 |-----------------|--------|
 | Type | Default, Secondary, Outline, Destructive |
@@ -225,31 +331,30 @@ No keyboard interaction when rendered as `span`. When rendered as a link via `as
 
 Total: 8 variant combinations (4 types × 2 number modes)
 
-Default layout: flex row (gap 4px, px 8px, py 2px, rounded from `--radius`, overflow clip)
-Optional left icon (12×12px) + Label text (text-xs, font-medium, truncate) + Optional right icon (12×12px)
-Number variants render as compact pill badges (no label text, icon-only or count display).
+Number=True variants render as compact pill badges (no label text, icon-only or count display).
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable / Tailwind Utility | Purpose |
-|-------|--------------------------------|---------|
+|-------------|--------------------------------|---------|
 | `var(--primary)` | `--primary` / `bg-primary` | Default variant background |
 | `var(--primary-foreground)` | `--primary-foreground` / `text-primary-foreground` | Default variant text color |
-| `--radius` (derived) | `rounded-md` | Badge border radius |
-| `px-2` (8px) | `px-2` | Horizontal padding |
-| `py-0.5` (2px) | `py-0.5` | Vertical padding |
-| `gap-1` (4px) | `gap-1` | Gap between icon and label |
-| `font-sans` | `--font-sans` / `font-sans` | Font family |
-| `font-medium` (500) | `font-medium` | Label font weight |
-| `text-xs` (12px) | `text-xs` | Label font size |
+| `--radius` (derived) | `rounded-md` (derived from `--radius`) | Badge border radius |
+| `padding` (2 units) | `px-2` (Tailwind `8px`) | Horizontal padding |
+| `padding` (0.5 units) | `py-0.5` (Tailwind `2px`) | Vertical padding |
+| `padding` (1 units) | `gap-1` (Tailwind `4px`) | Gap between icon and label |
+| `--font-sans` | `--font-sans` / `font-sans` | Font family |
+| `font-medium` | `font-medium` (Tailwind `500`) | Label font weight |
+| `text-xs` | `text-xs` (Tailwind `12px`) | Label font size |
+| `leading-4` | `leading-4` (Tailwind `16px`) | Label line height |
 
 ### Theme Behavior
 
 - Default variant uses `--primary` / `--primary-foreground` — adapts to light/dark via theme
 - Secondary variant uses `--secondary` / `--secondary-foreground` — adapts to light/dark via theme
-- Destructive variant uses `--destructive` with `text-white`; in dark mode uses reduced opacity
+- Destructive variant uses `--destructive` with `text-white`; in dark mode uses `--destructive/60` (reduced opacity)
 - Outline variant uses `--border` / `--foreground` with `--accent` hover — adapts to light/dark via theme
 - Ghost and link variants have no background — inherit from parent
 - Focus ring uses `--ring` — adapts to light/dark via theme

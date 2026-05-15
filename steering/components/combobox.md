@@ -44,8 +44,6 @@ A filterable select component built on Base UI's Combobox primitive, providing s
 - Don't use for small lists (fewer than 7 items) — use select or radio group.
 - Don't clear the search input on selection if users may need to make multiple selections.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -346,7 +344,6 @@ const anchor = useComboboxAnchor()
 </div>
 ```
 
-
 ## CSS
 
 ### Raw CSS
@@ -557,7 +554,6 @@ const anchor = useComboboxAnchor()
 | ChipRemove | `inline-flex items-center justify-center size-3 rounded-full opacity-70 hover:opacity-100` | Remove button |
 | ChipsInput | `flex-1 min-w-16 border-0 bg-transparent text-sm outline-hidden placeholder:text-muted-foreground` | Inline input |
 
-
 ## CSS Variable Dependencies
 
 | Variable | Purpose | Source |
@@ -578,33 +574,51 @@ const anchor = useComboboxAnchor()
 
 ### Component Structure
 
+The component contains:
+
+**Combobox** — 2 variant properties:
+
 | Variant Property | Values |
 |-----------------|--------|
 | Grouped | False, True |
 | State | Enabled, Hover, Focus, Disabled |
 
+Total: 8 variant combinations (2 grouped × 4 states)
+
+**Combobox Menu**:
+- Dropdown list with search field and menu items
+
+**.Combobox Menu Item** — 2 variant properties:
+
+| Variant Property | Values |
+|-----------------|--------|
+| State | Enabled, Hover |
+| Type | Simple, Checkbox, Icon, Avatar |
+
 Total: 8 variant combinations
 
-Field layout: flex row (h 36px, background, border, rounded, shadow-sm, px 16px, py 8px) → optional Avatar (20px) + Content text (text-sm, font-medium, truncate) + Chevrons icon (16×16px)
-
-Menu: Dropdown list with search field and menu items
-Menu Item types: Simple, Checkbox, Icon, Avatar
+**.Combobox Menu Label** — group heading label
+**.Combobox Search Field** — search input within dropdown
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--foreground)` | `--foreground` | Label text, field content text |
 | `var(--muted-foreground)` | `--muted-foreground` | Help text, placeholder text |
 | `var(--input)` | `--input` | Field border color |
-| `--radius` (derived) | `--radius` | Field border radius |
-| `px-4` (16px) | `px-4` | Field horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-medium` | Label and content font weight |
-| `text-sm` (14px) | `text-sm` | All text size |
-| `shadow-sm` | `shadow-sm` | Field box shadow |
+| `--background` (effective) | `--background` (effective) | Field background |
+| `--radius` (derived) | `--radius` (derived) | Field border radius |
+| `padding` (4 units) | `px-4` | Field horizontal padding |
+| `padding` (2 units) | `py-2` / `gap-2` | Field vertical padding, label-field gap, icon gap |
+| `border-width` | `border` | Field border width |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-medium` | Label and content font weight |
+| `text-sm` | `text-sm` | All text size |
+| `leading-5` | `leading-5` | Label and help text line height |
+| `shadow-sm` | `shadow-sm` | Field box shadow (2-layer) |
 
 ### Theme Behavior
 

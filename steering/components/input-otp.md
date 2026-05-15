@@ -32,8 +32,6 @@ A one-time password input that renders individual character slots, built on the 
 #### Don't
 - Don't use for general text input. Don't make individual slots too small for touch targets. Don't omit the expected code length indicator.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -290,33 +288,46 @@ Not applicable — Input OTP does not use Radix primitives.
 
 ### Component Structure
 
-Input OTP sub-components:
+Component organizes Input OTP into two sub-components:
+
+Input OPT (composite):
 
 | Variant Property | Values |
 |-----------------|--------|
 | Segments | One, Two, Three |
 | State | Enabled, Destructive, Disabled |
-| Alignment | Left, Center |
+| Alignment | Left ←, Center |
 
-Individual slot types: Left, Center, Right — States: Default, Focus, Focus-Filled
+.Input OPT Field (individual slot):
 
-Layout: optional Label + Input row (6× slots, no gap, shared borders) + optional Help text
-Each slot: flex column, centered, 36×36px. Left slot gets left radius, right slot gets right radius.
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Left, Center, Right |
+| State | Default, Focus, Focus-Filled |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--input` | `--input` | Slot border color, background (with opacity) |
+|-------------|-------------|---------|
+| `--bg-input-30` | `--input` (with opacity) | Slot background |
+| `--input` | `--input` | Slot border color |
 | `--foreground` | `--foreground` | Filled text color, label text |
 | `--muted-foreground` | `--muted-foreground` | Help text color |
-| `--radius` (derived) | `--radius` | Slot corner radius |
-| `size-9` (36px) | `width` / `height` | Slot size |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `font-size` | Text size |
-| `shadow-xs` | `box-shadow` | Shadow |
+| `border-width` | `border-width` | Slot border width |
+| `--radius` (derived) | `--radius` (derived) | Slot corner radius |
+| `width` | `width` / `height` | Slot size |
+| `padding` | `gap` | Gap between label, input, help text |
+| `padding` | `padding` | Container padding |
+| `box-shadow` | `box-shadow` | Shadow color |
+| `box-shadow` | `box-shadow` offset-y | Shadow offset |
+| `box-shadow` | `box-shadow` blur | Shadow blur |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-weight` | Slot text font weight |
+| `font-medium` | `font-weight` | Label font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Slot and label text size |
 
 ### Theme Behavior
 

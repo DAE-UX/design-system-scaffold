@@ -32,8 +32,6 @@ A single-line text input that renders a native HTML `input` element with consist
 #### Don't
 - Don't use for multi-line text — use textarea. Don't omit labels (placeholder is not a label). Don't use `type="number"` for non-numeric data like phone numbers or zip codes.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -219,30 +217,35 @@ Standard native input keyboard behavior. No custom keyboard handling.
 
 ### Component Structure
 
+Component organizes Input into variant states and types:
+
 | Variant Property | Values |
 |-----------------|--------|
 | Type | Text, File, Password |
 | State | Enabled, Focus, Filled, Disabled |
 | Error | False, True |
 
-Input layout: flex column (gap, px 12px, py 8px), rounded, shadow-xs, background
-Placeholder text: text-sm, muted-foreground
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--input` | `--input` | Border color, background (with opacity) |
+|-------------|-------------|---------|
+| `--bg-input-30` | `--input` (with opacity) | Input background |
+| `--input` | `--input` | Border color |
 | `--muted-foreground` | `--muted-foreground` | Placeholder text color |
 | `--foreground` | `--foreground` | Filled text color |
-| `--radius` (derived) | `--radius` | Border radius |
-| `px-3` (12px) | `padding-inline` | Horizontal padding |
-| `py-2` (8px) | `padding-block` | Vertical padding |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `font-size` | Text size |
-| `shadow-xs` | `box-shadow` | Input shadow |
+| `border-width` | `border-width` | Border width |
+| `--radius` (derived) | `--radius` (derived) | Border radius |
+| `padding` | `padding-inline` | Horizontal padding |
+| `padding` | `padding-block` | Vertical padding |
+| `box-shadow` | `box-shadow` | Shadow color |
+| `box-shadow` | `box-shadow` offset-y | Shadow offset |
+| `box-shadow` | `box-shadow` blur | Shadow blur |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-weight` | Text font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Text size |
 
 ### Theme Behavior
 

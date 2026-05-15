@@ -1,6 +1,6 @@
 # Component: Alert Dialog
 
-> **TL;DR:** A modal dialog that interrupts the user with important content and expects a response. Built on Radix UI AlertDialog primitive via shadCN. Supports `default` and `sm` sizes, optional media element, destructive action pattern, and RTL. Composed of 12 parts. Focus is automatically trapped. Esc closes the dialog.
+> **TL;DR:** A modal dialog that interrupts the user with important content and expects a response. Built on Radix UI AlertDialog primitive via shadCN. Supports `default` and `sm` sizes, optional media element, destructive action pattern, and RTL. Composed of 12 parts: AlertDialog, AlertDialogTrigger, AlertDialogPortal, AlertDialogOverlay, AlertDialogContent, AlertDialogHeader, AlertDialogFooter, AlertDialogTitle, AlertDialogDescription, AlertDialogMedia, AlertDialogAction, AlertDialogCancel. Focus is automatically trapped. Esc closes the dialog.
 
 ## Metadata
 
@@ -35,8 +35,6 @@ A modal dialog that interrupts the user with important content and expects a res
 - Don't use for non-destructive confirmations — use a regular dialog.
 - Don't chain alert dialogs.
 - Don't auto-dismiss alert dialogs — require explicit user action.
-
-Sources: shadCN, Radix UI
 
 ## API
 
@@ -137,7 +135,7 @@ Sources: shadCN, Radix UI
 |-----------|--------|------------|
 | `[data-state]` | `"open" \| "closed"` | Trigger, Overlay, Content |
 | `[data-size]` | `"default" \| "sm"` | Content |
-| `[data-slot]` | Component identifier string | All parts |
+| `[data-slot]` | Component identifier string | All parts (e.g., `"alert-dialog-content"`, `"alert-dialog-title"`) |
 
 ### CSS Variables (Radix)
 
@@ -529,11 +527,18 @@ const [open, setOpen] = React.useState(false);
 | Content (default size) | `data-[size=default]:sm:max-w-lg` | Default max-width on sm+ screens |
 | Content (sm size) | `data-[size=sm]:max-w-xs` | Compact max-width |
 | Header | `grid grid-rows-[auto_1fr] place-items-center gap-1.5 text-center` | Centered grid layout |
+| Header (default, sm+) | `sm:group-data-[size=default]/alert-dialog-content:place-items-start sm:group-data-[size=default]/alert-dialog-content:text-left` | Left-aligned on larger screens |
+| Header (with media) | `has-data-[slot=alert-dialog-media]:grid-rows-[auto_auto_1fr] has-data-[slot=alert-dialog-media]:gap-x-6` | Extra grid row for media |
+| Header (default + media, sm+) | `sm:group-data-[size=default]/alert-dialog-content:has-data-[slot=alert-dialog-media]:grid-rows-[auto_1fr]` | Side-by-side layout on sm+ |
 | Footer | `flex flex-col-reverse gap-2` | Stacked buttons (mobile) |
 | Footer (sm+) | `sm:flex-row sm:justify-end` | Row layout on larger screens |
+| Footer (sm size) | `group-data-[size=sm]/alert-dialog-content:grid group-data-[size=sm]/alert-dialog-content:grid-cols-2` | 2-column grid for sm dialogs |
 | Title | `text-lg font-semibold` | Dialog title typography |
+| Title (default + media, sm+) | `sm:group-data-[size=default]/alert-dialog-content:group-has-data-[slot=alert-dialog-media]/alert-dialog-content:col-start-2` | Title beside media on sm+ |
 | Description | `text-sm text-muted-foreground` | Subdued description text |
 | Media | `mb-2 inline-flex size-16 items-center justify-center rounded-md bg-muted` | Icon/image container |
+| Media (default, sm+) | `sm:group-data-[size=default]/alert-dialog-content:row-span-2` | Spans title + description rows |
+| Media > svg | `*:[svg:not([class*='size-'])]:size-8` | Default icon size (32px) |
 
 ## CSS Variable Dependencies
 
@@ -549,43 +554,40 @@ const [open, setOpen] = React.useState(false);
 
 ### Component Structure
 
+The component contains:
+
 | Variant Property | Values |
 |-----------------|--------|
 | Breakpoint | Medium and up, Small |
 
-Default breakpoint layout:
-- AlertDialogContent (flex column, gap 16px, padding 24px) + AlertDialogFooter (flex row, gap 8px, justify-end)
-- AlertDialogContent → Title (text-lg, font-semibold) + Description (text-sm, muted-foreground)
-- AlertDialogFooter → Secondary Button (outline variant) + Primary Button (primary variant)
-- Container: max-width 512px, border-radius derived from `--radius`, border 1px solid `--border`, shadow-lg
-
-Small breakpoint layout:
-- Same structure, but content and footer are center-aligned
-- Footer uses 2-column grid layout instead of flex row
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable / Tailwind Utility | Purpose |
-|-------|--------------------------------|---------|
-| `var(--background)` | `--background` / `bg-background` | Content background |
+|-------------|--------------------------------|---------|
+| `var(--background)` | `--background` / `bg-background` | Content background (via `--bg-input-30`) |
 | `var(--border)` | `--border` / `border-border` | Content border color |
 | `var(--foreground)` | `--foreground` / `text-foreground` | Title text color, secondary button text |
 | `var(--muted-foreground)` | `--muted-foreground` / `text-muted-foreground` | Description text color |
 | `var(--primary)` | `--primary` / `bg-primary` | Primary button background |
 | `var(--primary-foreground)` | `--primary-foreground` / `text-primary-foreground` | Primary button text |
 | `var(--input)` | `--input` / `border-input` | Secondary button border |
-| `--radius` (derived) | `--radius` | Content and button border radius |
-| `p-6` (24px) | `p-6` | Content padding |
-| `gap-4` (16px) | `gap-4` | Gap between header and footer |
-| `gap-2` (8px) | `gap-2` | Gap between title/description, button gap |
-| `font-sans` | `--font-sans` / `font-sans` | Font family |
-| `font-semibold` (600) | `font-semibold` | Title font weight |
-| `font-medium` (500) | `font-medium` | Button text font weight |
-| `text-lg` (18px) | `text-lg` | Title font size |
-| `text-sm` (14px) | `text-sm` | Description and button font size |
-| `shadow-lg` | `shadow-lg` | Content box shadow |
+| `--radius` (derived) | `--radius` (derived) | Content and button border radius |
+| `padding` (6 units) | `p-6` (Tailwind `24px`) | Content padding |
+| `padding` (4 units) | `gap-4` (Tailwind `16px`) | Gap between header and footer |
+| `padding` (2 units) | `gap-2` (Tailwind `8px`) | Gap between title/description, button gap |
+| `border-width` | `border` | Content border width |
+| `--font-sans` | `--font-sans` / `font-sans` | Font family |
+| `font-semibold` | `font-semibold` (Tailwind `600`) | Title font weight |
+| `font-medium` | `font-medium` (Tailwind `500`) | Button text font weight |
+| `font-normal` | `font-normal` (Tailwind `400`) | Description font weight |
+| `text-lg` | `text-lg` (Tailwind `18px`) | Title font size |
+| `text-sm` | `text-sm` (Tailwind `14px`) | Description and button font size |
+| `leading-8` | `leading-8` (Tailwind `28px`) | Title line height |
+| `leading-5` | `leading-5` (Tailwind `20px`) | Description and button line height |
+| `shadow-lg` | `shadow-lg` | Content box shadow (2-layer) |
+| `shadow-2xs` | `shadow-2xs` | Button box shadow |
 
 ### Theme Behavior
 

@@ -30,8 +30,6 @@ A vertically stacked set of interactive headings that each reveal an associated 
 - Don't use for critical content that users must see — it should be visible by default.
 - Don't use as a replacement for tabs when content sections are unrelated.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -242,23 +240,25 @@ shadCN accordion uses these Tailwind utilities:
 
 ### Component Structure
 
+The component contains:
 - Accordion Item variants: `Open=False, Hover=False` | `Open=False, Hover=True` | `Open=True, Hover=False` | `Open=True, Hover=True`
 - Composed Accordion example (3 items, all collapsed)
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+This table maps design tokens to their corresponding shadCN CSS variables and Tailwind utilities. Actual color/style values are defined in the active theme file (e.g., ), not here.
 
 | Token | CSS Variable / Tailwind Utility | Purpose |
-|-------|--------------------------------|---------|
+|-------------|--------------------------------|---------|
 | `var(--foreground)` | `--foreground` / `text-foreground` | Trigger text color |
 | `var(--border)` | `--border` / `border-border` | Item separator border |
-| `font-sans` | `--font-sans` / `font-sans` | Font family |
-| `font-medium` (500) | `font-medium` | Trigger font weight |
-| `leading-6` (24px) | `leading-6` | Trigger line height |
-| `text-base` (16px) | `text-base` | Trigger font size |
-| `py-4` (16px) | `py-4` | Trigger vertical padding |
-| `h-4` (16px) | `h-4` / `w-4` | Chevron icon size |
+| `--font-sans` | `--font-sans` / `font-sans` | Font family |
+| `font-medium` | `font-medium` (Tailwind `500`) | Trigger font weight |
+| `leading-6` | `leading-6` (Tailwind `24px`) | Trigger line height |
+| `text-base` | `text-base` (Tailwind `16px`) | Trigger font size |
+| `p-4` | `py-4` (Tailwind `16px`) | Trigger vertical padding |
+| `p-0` | `px-0` (Tailwind `0px`) | Trigger horizontal padding |
+| `h-4` | `h-4` / `w-4` (Tailwind `16px`) | Chevron icon size |
 
 ### Theme Behavior
 

@@ -6,7 +6,7 @@
 
 - **Component Name:** Chart
 - **Source:** shadCN (recharts)
-- **Dependencies:** recharts@2.15.4, lucide-react
+- **Dependencies:** recharts@3.8.0, lucide-react
 
 ## Behavior
 
@@ -44,8 +44,6 @@ A charting system that wraps Recharts with shadCN theming and custom tooltip/leg
 - Don't use a filter when only one metric exists
 - Don't use a legend when only one metric is shown and the title explains it
 - Don't use area charts for single series (use line), negative data (use line/bar), or non-stacked data (use line)
-
-Sources: shadCN, Radix UI
 
 ## API
 
@@ -454,7 +452,7 @@ When `accessibilityLayer` is enabled on the Recharts chart component:
 
 ### Component Structure
 
-Chart contains 6 chart categories and subcomponents:
+The component contains 6 chart category frames and a subcomponents frame:
 
 **Area Charts** — 8 variants: Interactive, Curved, Linear, Step, Stacked, Stacked Expanded, Gradient, Axes
 
@@ -470,32 +468,36 @@ Chart contains 6 chart categories and subcomponents:
 
 | Sub-component | Variants |
 |--------------|----------|
-| Tooltip | Composed tooltip with title, items, footer |
-| Tooltip Item | Type: Default, Icon, Line, Total |
-| Legend Item | Type: Legend Item, Icon |
-| Legend | Composed legend bar |
-| Chart Dot | Single 8×8px dot indicator |
-
+| Chart / Tooltip | Composed tooltip with title, items, footer |
+| .Chart / Tooltip / Tooltip Item | Type: Default, Icon, Line, Total |
+| Chart / Legend Item | Type: Legend Item, Icon |
+| .Chart / Legend | Composed legend bar |
+| Chart / Chart Dot | Single 8×8px dot indicator |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+Design tokens extracted from the Chart Tooltip subcomponent:
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--background)` | `--background` | Tooltip background |
 | `var(--border)` | `--border` | Tooltip border |
 | `var(--foreground)` | `--foreground` | Tooltip title, item value text |
 | `var(--muted-foreground)` | `--muted-foreground` | Item label, unit text |
-| `var(--chart-1)` | `--chart-1` | Chart color 1 |
-| `var(--chart-3)` | `--chart-3` | Chart color 3 |
-| `var(--chart-5)` | `--chart-5` | Chart color 5 |
-| `--radius` (derived) | `--radius` | Tooltip border radius |
-| `px-2.5` (10px) | `px-2.5` | Tooltip horizontal padding |
-| `py-1.5` (6px) | `py-1.5` | Tooltip vertical padding |
-| `font-sans` | `--font-sans` | Font family |
+| `var(--chart-1)` | `--chart-1` | Chart color 1 (tooltip key) |
+| `var(--chart-3)` | `--chart-3` | Chart color 3 (tooltip key) |
+| `var(--chart-5)` | `--chart-5` | Chart color 5 (tooltip key) |
+| `--radius` (derived) | `--radius` (derived) | Tooltip border radius |
+| `--radius` (derived) | `rounded-sm` (derived) | Color key border radius |
+| `padding` (2.5 units) | `px-2.5` | Tooltip horizontal padding |
+| `padding` (1.5 units) | `py-1.5` / `gap-1.5` | Tooltip vertical padding, content gap |
+| `padding` (2 units) | `gap-2` | Item gap between key/label/value |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-medium` | Tooltip title, total label weight |
+| `font-normal` | `font-normal` | Item label/value weight |
 | `text-xs` | `text-xs` | All tooltip text size |
-| `shadow-lg` | `shadow-lg` | Tooltip box shadow |
+| `leading-4` | `leading-4` | Title line height |
+| `shadow-lg` | `shadow-lg` | Tooltip box shadow (2-layer) |
 
 ### Theme Behavior
 

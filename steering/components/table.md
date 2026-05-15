@@ -299,30 +299,27 @@ Component organizes Table as an assembled composition:
 |-----------------|--------|
 | (none) | Single assembled table variant |
 
-- Header row: TableHead cells (`h-10`, `px-2`, `py-3`, `font-medium`, `border-b`)
-- Body rows: TableCell cells (`h-56px`, `p-2`, `font-normal`, `border-b`)
-- Footer row: Full-width cell with `bg-muted` background, `font-medium`
-- Caption: Below table, `text-sm`, `px-3.5`, `py-4`
-- Header and body rows use alternating content for demonstration
-- Footer row spans full width for totals display
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--foreground` | `--foreground` | Header and body text color |
 | `--muted-foreground` | `--muted-foreground` | Caption text color |
 | `--border` | `--border` | Row border color |
 | `--muted` | `--muted` | Footer background, hover/selected row background |
 | `--background` | `--background` | Table background |
-| `h-10` (40px) | `height` | Header cell height |
-| `p-2` (8px) | `padding` | Cell padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Header and footer font weight |
-| `text-sm` (14px) | `font-size` | Text size |
+| `height` | `height` | Header cell height |
+| `padding` | `padding` | Cell padding |
+| `padding` | `padding` | Header cell vertical padding |
+| `padding` (3.5 units) | `padding` | Caption horizontal padding |
+| `padding` | `padding` | Caption vertical padding |
+| `border-width` | `border-width` | Row border width |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Header and footer font weight |
+| `font-normal` | `font-weight` | Body cell font weight |
+| `--text-sm` | `font-size` | Text size (all cells and caption) |
 
 ### Theme Behavior
 

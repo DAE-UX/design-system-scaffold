@@ -151,18 +151,26 @@ No CSS variable dependencies — Label uses only inherited text color.
 
 ### Component Structure
 
-Label is a simple text element. It is typically included within the Field component for form layouts.
+The component page for Label contains an informational Alert (not a variant matrix). The Label component is included within the Field component for optimal designer experience.
+
+The page displays a single Alert instance explaining: "For optimal designer experience, we've included the label in the Field component."
+
+No variant properties — Label is a simple text element rendered as part of the Field component's structure.
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--foreground` | `--foreground` | Label text color |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Label font weight |
-| `text-sm` (14px) | `font-size` | Text size |
+|-------------|-------------|---------|
+| `--foreground` | `--foreground` | Label text color (via Alert title) |
+| `--muted-foreground` | `--muted-foreground` | Description text color (via Alert) |
+| `--card` | `--card` | Alert background |
+| `--border` | `--border` | Alert border |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Label font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Text size |
 
 ### Theme Behavior
 

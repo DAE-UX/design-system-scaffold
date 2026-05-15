@@ -143,27 +143,23 @@ No keyboard interaction — Skeleton is a static decorative element.
 
 ### Component Structure
 
-Component is organized into type variants:
+Component organizes Skeleton into type variants:
 
 | Variant Property | Values |
 |-----------------|--------|
 | Type | Line, Card |
 
-- Uses gap 16px between avatar and lines
-- Uses gap 8px between line rows
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--accent` | `--accent` | Skeleton placeholder background |
-| `rounded-full` | `border-radius` | Avatar circle rounding |
-| `--radius` (derived) | `border-radius` | Line and card rounding |
-| `gap-4` (16px) | `gap` | Gap between avatar and lines |
-| `gap-2` (8px) | `gap` | Gap between line rows |
+| `border-radius` | `border-radius` | Avatar circle rounding |
+| `--radius` (derived) | `border-radius` (derived) | Line and card rounding |
+| `padding` | `gap` | Gap between avatar and lines |
+| `padding` | `gap` | Gap between line rows |
 
 ### Theme Behavior
 

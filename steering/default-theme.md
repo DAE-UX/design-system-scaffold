@@ -2,9 +2,7 @@
 
 ## About
 
-The default theme uses shadCN's New York style with the Neutral base color. It serves as the baseline for all theme generation and as the only built-in theme for external and skill-builder outputs. All values are sourced from the official shadCN theming documentation.
-
-Source: `https://ui.shadcn.com/docs/theming`
+The default theme uses shadCN's New York style with the Neutral base color. It serves as the baseline for all theme generation. All values are sourced from the official shadCN theming documentation.
 
 ## shadCN CSS Variables
 
@@ -68,7 +66,6 @@ Standard shadCN variables that components reference. These follow the `--name` /
 | `--font-sans` | `Geist` |
 | `--font-mono` | `Geist Mono` |
 
-
 ---
 
 ## Tailwind Mapping
@@ -81,8 +78,6 @@ Tailwind utilities map directly to the shadCN CSS variables above via the `@them
 | `text-{name}` | `--{name}` (foreground) | `text-primary-foreground` → `var(--primary-foreground)` |
 | `border-{name}` | `--{name}` | `border-border` → `var(--border)` |
 | `ring-{name}` | `--{name}` | `ring-ring` → `var(--ring)` |
-
-Source: `https://ui.shadcn.com/docs/theming`
 
 ## Global Styles
 
@@ -108,8 +103,16 @@ Source: `https://ui.shadcn.com/docs/theming`
 
 ## Usage Notes
 
-This is the default shadCN New York theme with Neutral base color. It contains only standard shadCN contract variables — no custom extensions (status, focus, gradients, shadows, agentic). Use this as a base when generating new themes via the Generate Theme workflow.
+This is the default shadCN New York theme with Neutral base color. It contains only standard shadCN contract variables — no custom extensions. Use this as a base when generating new themes via the Generate Theme workflow.
 
 Variable hierarchy:
 1. shadCN CSS Variables — standard component theming contract
 2. Tailwind utilities — mapped from shadCN variables via `@theme inline`
+
+---
+
+## Theme UI Rules
+
+Rules specific to the Default (New York) theme. These apply when this theme is active and supplement the general design guidelines and copy guidelines. If a theme UI rule conflicts with a general guideline, the theme rule takes precedence for this theme.
+
+EMPTY: None recorded.

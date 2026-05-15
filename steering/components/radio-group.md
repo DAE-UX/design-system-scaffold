@@ -244,7 +244,7 @@ Radix UI RadioGroup provides built-in `radiogroup` role on the root and `radio` 
 
 ### Component Structure
 
-Component is organized into composite and sub-components:
+Component organizes Radio Group into composite and sub-components:
 
 Radio Group (composite):
 | Variant Property | Values |
@@ -268,26 +268,27 @@ Radio Group (composite):
 | Checked | True, False |
 | State | Default, Hover, Focus, Disabled |
 
-- Item → Radio Toggle (16×16, shadow-xs) + Content (label + description)
-- Content uses flex column with gap 6px, label is font-medium foreground, description is font-normal muted-foreground
-- Item uses gap 12px between toggle and content
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--input` | `--input` | Toggle base background (at 30% opacity) and border |
+|-------------|-------------|---------|
+| `--bg-input-30` | `--input` (at 30% opacity) | Toggle base background |
+| `--border` | `--border` | Toggle base border |
 | `--foreground` | `--foreground` | Label text color |
 | `--muted-foreground` | `--muted-foreground` | Description text color |
-| `size-4` (16px) | `width` / `height` | Toggle size |
-| `rounded-full` | `border-radius` | Toggle rounding |
-| `gap-3` (12px) | `gap` | Gap between toggle and content |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Label font weight |
-| `text-sm` (14px) | `font-size` | Text size |
-| `shadow-xs` | `box-shadow` | Toggle shadow |
+| `border-width` | `border-width` | Toggle border width |
+| `width` | `width` / `height` | Toggle size |
+| `border-radius` | `border-radius` | Toggle rounding |
+| `box-shadow` | `box-shadow` | Toggle shadow |
+| `padding` | `gap` | Gap between toggle and content |
+| `padding` (1.5 units) | `gap` | Gap between label and description |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Label font weight |
+| `font-normal` | `font-weight` | Description font weight |
+| `--text-sm` | `font-size` | Text size |
+| `leading-5` | `line-height` | Description line height |
 
 ### Theme Behavior
 

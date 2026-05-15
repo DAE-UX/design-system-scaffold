@@ -43,8 +43,6 @@ A date selection calendar built on top of react-day-picker's DayPicker component
 - Don't allow selection of disabled dates.
 - Don't hide navigation controls.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -504,6 +502,8 @@ import { arSA } from "react-day-picker/locale"
 
 ### Component Structure
 
+The component contains multiple sub-components:
+
 **.Calendar Day Button** — 4 variant properties:
 
 | Variant Property | Values |
@@ -513,25 +513,39 @@ import { arSA } from "react-day-picker/locale"
 | Alignment | Central |
 | Size | Default (32px), Large (48px), Custom days (52px) |
 
-Default day button layout: flex column (32×32px, rounded from `--radius`, padding 6px, overflow clip) → Day number text (text-sm, font-normal, text-foreground, text-center)
+Total: 15 variant combinations shown (5 states × 3 sizes)
 
-**.Calendar Arrow Button** — States: Enabled, Hover, Focus, Disabled
+**.Calendar Arrow Button** — 1 variant property:
 
-**.Calendar Header** — Types: Default, Date dropdown, Month dropdown, Year dropdown
+| Variant Property | Values |
+|-----------------|--------|
+| State | Enabled, Hover, Focus, Disabled |
+
+**.Calendar Header** — 1 variant property:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Default, Date dropdown, Month dropdown, Year dropdown |
+
+**.CalendarDayHeader** — single component (weekday abbreviation label)
+
+**.Calendar Event Slot** — single component (event indicator below day)
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--foreground)` | `--foreground` | Day number text color |
-| `--radius` (derived) | `--radius` | Day button border radius |
-| `size-8` (32px) | `size-8` | Default day button size |
-| `p-1.5` (6px) | `p-1.5` | Day button padding |
-| `font-sans` | `--font-sans` | Font family |
+| `--radius` (derived) | `--radius` (derived) | Day button border radius |
+| `width` | `size-8` | Default day button size |
+| `height` | `size-8` | Default day button height |
+| `padding` (1.5 units) | `p-1.5` | Day button padding |
+| `--font-sans` | `--font-sans` | Font family |
 | `font-normal` | `font-normal` | Day number font weight |
 | `text-sm` | `text-sm` | Day number font size |
+| `leading-5` | `leading-5` | Day number line height |
 
 ### Theme Behavior
 

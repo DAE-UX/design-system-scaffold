@@ -1,6 +1,6 @@
-# Storybook Configuration — Design System Skill
+# Storybook Configuration
 
-> **TL;DR:** Instructions for generating a Storybook that showcases all 57 components, 2 patterns, and 4 templates from the design system with theme switching and light/dark mode support. Uses Storybook 9+ with React/Vite. Theme and mode are controlled via global toolbar decorators. Each component gets a story file with variants, composition patterns, and interactive controls. Patterns and templates get dedicated story files showing composed usage.
+> **TL;DR:** Instructions for generating a Storybook that showcases all 57 components, 2 patterns, and 4 templates from the design system with theme switching and light/dark mode support. Uses Storybook 10+ with React/Vite (ESM-only). Theme and mode are controlled via global toolbar decorators. Each component gets a story file with variants, composition patterns, and interactive controls. Patterns and templates get dedicated story files showing composed usage.
 
 ## Purpose
 
@@ -17,8 +17,6 @@ Configuration and generation instructions for building a complete Storybook from
 - A React project with shadCN components installed (see `shadcn.md`)
 - Node.js 20+
 - All design system components added to the project via `npx shadcn@latest add`
-
-Source: `https://storybook.js.org/docs`
 
 ---
 
@@ -42,12 +40,12 @@ npm run storybook
 
 ## Project Structure
 
-```
+```text
 .storybook/
 ├── main.ts              — Storybook configuration
 ├── preview.ts           — Global decorators, parameters, globals
 ├── manager.ts           — UI theme configuration
-└── DSTheme.ts          — Custom Storybook UI theme
+└── CustomTheme.ts       — Custom Storybook UI theme
 
 src/
 ├── stories/
@@ -96,7 +94,8 @@ const preview: Preview = {
         title: "Theme",
         icon: "paintbrush",
         items: [
-          { value: "default", title: "Default (New York)" },
+          { value: "default", title: "Default" },
+          // Add custom themes here as you create them
         ],
         dynamicTitle: true,
       },
@@ -126,7 +125,7 @@ const preview: Preview = {
       React.useEffect(() => {
         const root = document.documentElement;
         // Remove all theme classes, then apply selected
-        root.classList.remove("theme-default");
+        root.className = root.className.replace(/theme-\S+/g, '');
         root.classList.add(`theme-${theme}`);
         // Toggle dark mode
         root.classList.toggle("dark", mode === "dark");
@@ -161,15 +160,28 @@ Each theme defines its CSS variables. The theme switcher works by applying a the
 
 /* Default theme (light) */
 :root, .theme-default {
-  --background: /* Default light background */;
-  --foreground: /* Default light foreground */;
-  /* ... all Default light variables from themes/default.md */
+  --background: /* default light background */;
+  --foreground: /* default light foreground */;
+  /* ... all default light variables from default-theme.md */
 }
 
 .dark, .theme-default.dark {
-  --background: /* Default dark background */;
-  --foreground: /* Default dark foreground */;
-  /* ... all Default dark variables from themes/default.md */
+  --background: /* default dark background */;
+  --foreground: /* default dark foreground */;
+  /* ... all default dark variables from default-theme.md */
+}
+
+/* Custom theme overrides (add your themes here) */
+.theme-custom {
+  --background: /* custom light background */;
+  --foreground: /* custom light foreground */;
+  /* ... all custom light variables */
+}
+
+.theme-custom.dark {
+  --background: /* custom dark background */;
+  --foreground: /* custom dark foreground */;
+  /* ... all custom dark variables */
 }
 
 @theme inline {
@@ -179,7 +191,7 @@ Each theme defines its CSS variables. The theme switcher works by applying a the
 }
 ```
 
-Variable values come from the theme file: `themes/default.md`.
+Variable values come from the theme file: `default-theme.md`. Add custom themes using the Generate Theme workflow.
 
 ---
 
@@ -341,7 +353,7 @@ The addon is included in the recommended Storybook configuration and runs automa
 Customize the Storybook UI itself to match the design system branding:
 
 ```typescript
-// .storybook/DSTheme.ts
+// .storybook/CustomTheme.ts
 import { create } from "storybook/theming";
 
 export default create({
@@ -355,10 +367,10 @@ export default create({
 ```typescript
 // .storybook/manager.ts
 import { addons } from "storybook/manager-api";
-import DSTheme from "./DSTheme";
+import CustomTheme from "./CustomTheme";
 
 addons.setConfig({
-  theme: DSTheme,
+  theme: CustomTheme,
 });
 ```
 
@@ -369,7 +381,7 @@ addons.setConfig({
 | Constraint | Impact | Workaround |
 |-----------|--------|------------|
 | Theme CSS must be loaded globally | Cannot scope theme variables per story | Use global decorator to switch themes |
-| Storybook 9+ requires Node.js 20+ | Older Node versions not supported | Upgrade Node.js |
+| Storybook 10+ requires Node.js 20+ | Older Node versions not supported | Upgrade Node.js |
 | `@storybook/addon-a11y` is automated only | Does not replace manual WCAG testing | Use as complement to manual testing |
 | Template stories need `layout: "fullscreen"` | Default padding clips full-page layouts | Set parameter per template story |
 

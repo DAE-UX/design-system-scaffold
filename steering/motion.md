@@ -1,4 +1,4 @@
-# Motion (Animation Library) — Design System Skill
+# Motion (Animation Library)
 
 > **TL;DR:** Motion (prev Framer Motion) is the animation library for cases where CSS transitions are insufficient and shadCN components don't provide native animation. Priority chain: shadCN native animation → CSS transitions → Motion. Use Motion for spring physics, gesture-driven animations, layout transitions, scroll-linked effects, and exit animations. Always reference the motion heuristics in `guidelines/design/ui-guidelines.md` → Motion when selecting animations. Minimize dependencies — reach for Motion only when simpler approaches fall short.
 
@@ -16,7 +16,7 @@ Animation library reference and usage guidance for agents generating UI with the
 
 Before reaching for Motion, follow this decision tree:
 
-```
+```text
 Does the shadCN component handle this animation natively?
 ├─ YES → Use the shadCN/Radix native approach (Accordion expand, Dialog open/close, etc.)
 │        The component spec is authoritative. Do NOT override unless the user explicitly requests it.
@@ -60,8 +60,6 @@ Import in React components:
 ```typescript
 import { motion, AnimatePresence } from "motion/react"
 ```
-
-Source: `https://motion.dev/docs/react-quick-start`
 
 ---
 

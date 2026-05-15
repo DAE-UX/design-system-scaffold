@@ -28,8 +28,6 @@ Displays content within a desired width-to-height ratio. The component constrain
 - Don't use for text-only content.
 - Don't nest interactive elements that depend on the container's dimensions.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts

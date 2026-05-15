@@ -202,34 +202,31 @@ No custom keyboard interaction — uses native textarea keyboard behavior. Text 
 
 ### Component Structure
 
-Component is organized into state variants:
+Component organizes Textarea into state variants:
 
 | Variant Property | Values |
 |-----------------|--------|
 | State | Enabled, Filled, Focussed, Disabled, Error, Error Focus |
 
-- Container: background, px 12px, py 10px, min-w 128px, max-w 512px, h 80px
-- Placeholder text: muted-foreground, text-sm, font-normal
-- Resize thumb: resize icon at bottom-right, opacity 0.6, 20px
-- Focussed state adds focus ring
-- Error state changes border to destructive
-- Disabled state reduces opacity
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--input` | `--input` | Border color and background (at 30% opacity) |
+|-------------|-------------|---------|
+| `--bg-input-30` | `--input` (at 30% opacity) | Textarea background |
+| `--input` | `--input` | Border color |
 | `--muted-foreground` | `--muted-foreground` | Placeholder text color |
 | `--foreground` | `--foreground` | Filled text color |
-| `px-3` (12px) | `padding-inline` | Horizontal padding |
-| `py-2.5` (10px) | `padding-block` | Vertical padding |
+| `padding` | `padding-inline` | Horizontal padding |
+| `padding` (2.5 units) | `padding-block` | Vertical padding |
 | `--radius` (derived) | `border-radius` | Border radius |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `font-size` | Text size |
+| `border-width` | `border-width` | Border width |
+| `opacity` | `opacity` | Resize thumb opacity |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-weight` | Text font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Text size |
 
 ### Theme Behavior
 

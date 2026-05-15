@@ -31,8 +31,6 @@ A navigation component for moving between pages of paginated content, built usin
 - Don't use if the collection has fewer than 5 elements
 - Don't use open-end pagination if you can determine the full collection size
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -334,30 +332,28 @@ Pagination (composite):
 | Selected | False, True |
 | State | Enabled, Hover, Focus, Disabled, Default (Ellipsis), Previous (Next) |
 
-- Pagination → Previous item + Page items + Ellipsis + Next item
-- Container: flex with gap 4px, centered
-- Page items: 36×36px, rounded
-- Selected page: background, border, shadow
-- Previous/Next: flex with gap 4px, px 10px, py 8px, icon + text
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--background` | `--background` | Selected page background |
 | `--input` | `--input` | Selected page border |
 | `--primary` | `--primary` | Page number text color |
-| `--radius` (derived) | `--radius` | Item border radius |
-| `h-9` (36px) | `height` | Item height |
-| `gap-1` (4px) | `gap` | Gap between items |
-| `px-2.5` (10px) | `padding-inline` | Previous/Next horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Text font weight |
-| `text-sm` (14px) | `font-size` | Text size |
-| `shadow-xs` | `box-shadow` | Selected page shadow |
+| `--radius` (derived) | `--radius` (derived) | Item border radius |
+| `height` | `height` | Item height |
+| `width` | `width` | Page item width |
+| `padding` | `gap` | Gap between items |
+| `padding` (2.5 units) | `padding-inline` | Previous/Next horizontal padding |
+| `padding` | `padding-block` | Previous/Next vertical padding |
+| `box-shadow` | `box-shadow` | Selected page shadow |
+| `box-shadow` | `box-shadow` offset-y | Shadow offset |
+| `box-shadow` | `box-shadow` blur | Shadow blur |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Text font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Text size |
 
 ### Theme Behavior
 

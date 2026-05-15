@@ -33,8 +33,6 @@ Displays a navigation trail showing the user's current location within a site hi
 - Don't omit the home/root link
 - Don't make the current page a clickable link in the breadcrumb
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -55,18 +53,44 @@ Sources: shadCN, Radix UI
 |------|------|---------|-------------|
 | className | `string` | — | Additional CSS classes |
 
+#### BreadcrumbList
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | — | Additional CSS classes |
+
+#### BreadcrumbItem
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | — | Additional CSS classes |
+
 #### BreadcrumbLink
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | asChild | `boolean` | `false` | Render as child element (e.g., Next.js `Link`) instead of `<a>` |
+| className | `string` | — | Additional CSS classes |
 | href | `string` | — | Link destination |
+
+#### BreadcrumbPage
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | — | Additional CSS classes |
 
 #### BreadcrumbSeparator
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| children | `ReactNode` | `<ChevronRight />` | Custom separator element |
+| children | `ReactNode` | `<ChevronRight />` | Custom separator element (overrides default icon) |
+| className | `string` | — | Additional CSS classes |
+
+#### BreadcrumbEllipsis
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| className | `string` | — | Additional CSS classes |
 
 ### Variants
 
@@ -107,34 +131,85 @@ Not applicable — Breadcrumb does not use Radix primitives.
 ### Custom Separator
 
 ```tsx
-<BreadcrumbSeparator>
-  <SlashIcon />
-</BreadcrumbSeparator>
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator>
+      <SlashIcon />
+    </BreadcrumbSeparator>
+    <BreadcrumbItem>
+      <BreadcrumbPage>Components</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
 ```
 
-### With Ellipsis and Dropdown
+### With Ellipsis (Collapsed)
 
 ```tsx
-<BreadcrumbItem>
-  <DropdownMenu>
-    <DropdownMenuTrigger className="flex items-center gap-1">
-      <BreadcrumbEllipsis className="size-4" />
-      <span className="sr-only">Toggle menu</span>
-    </DropdownMenuTrigger>
-    <DropdownMenuContent align="start">
-      <DropdownMenuItem>Documentation</DropdownMenuItem>
-      <DropdownMenuItem>Themes</DropdownMenuItem>
-    </DropdownMenuContent>
-  </DropdownMenu>
-</BreadcrumbItem>
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbEllipsis />
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
+```
+
+### With Dropdown Menu
+
+```tsx
+<Breadcrumb>
+  <BreadcrumbList>
+    <BreadcrumbItem>
+      <BreadcrumbLink asChild>
+        <Link href="/">Home</Link>
+      </BreadcrumbLink>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <DropdownMenu>
+        <DropdownMenuTrigger className="flex items-center gap-1">
+          <BreadcrumbEllipsis className="size-4" />
+          <span className="sr-only">Toggle menu</span>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent align="start">
+          <DropdownMenuItem>Documentation</DropdownMenuItem>
+          <DropdownMenuItem>Themes</DropdownMenuItem>
+          <DropdownMenuItem>GitHub</DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </BreadcrumbItem>
+    <BreadcrumbSeparator />
+    <BreadcrumbItem>
+      <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+    </BreadcrumbItem>
+  </BreadcrumbList>
+</Breadcrumb>
 ```
 
 ### With Custom Link Component (Next.js)
 
 ```tsx
-<BreadcrumbLink asChild>
-  <Link href="/components">Components</Link>
-</BreadcrumbLink>
+<BreadcrumbItem>
+  <BreadcrumbLink asChild>
+    <Link href="/components">Components</Link>
+  </BreadcrumbLink>
+</BreadcrumbItem>
 ```
 
 ## Accessibility
@@ -145,11 +220,13 @@ Not applicable — Breadcrumb does not use Radix primitives.
 
 | Element | Role / Attribute | Notes |
 |---------|-----------------|-------|
-| Breadcrumb | `nav` with `aria-label="breadcrumb"` | Landmark navigation |
-| BreadcrumbList | `ol` (implicit `list` role) | Ordered list |
+| Breadcrumb | `nav` with `aria-label="breadcrumb"` | Landmark navigation for breadcrumb trail |
+| BreadcrumbList | `ol` (implicit `list` role) | Ordered list of navigation items |
+| BreadcrumbItem | `li` (implicit `listitem` role) | Individual breadcrumb entry |
+| BreadcrumbLink | `a` (implicit `link` role) | Navigable link |
 | BreadcrumbPage | `role="link"`, `aria-disabled="true"`, `aria-current="page"` | Current page (non-clickable) |
-| BreadcrumbSeparator | `role="presentation"`, `aria-hidden="true"` | Decorative |
-| BreadcrumbEllipsis | `role="presentation"`, `aria-hidden="true"` | Decorative with sr-only text |
+| BreadcrumbSeparator | `role="presentation"`, `aria-hidden="true"` | Decorative separator, hidden from assistive technology |
+| BreadcrumbEllipsis | `role="presentation"`, `aria-hidden="true"` | Decorative indicator with "More" sr-only text |
 
 ### Keyboard Behavior
 
@@ -173,6 +250,12 @@ Not applicable — Breadcrumb does not use Radix primitives.
       <svg><!-- ChevronRight icon --></svg>
     </li>
     <li data-slot="breadcrumb-item">
+      <a href="/components" data-slot="breadcrumb-link">Components</a>
+    </li>
+    <li role="presentation" aria-hidden="true" data-slot="breadcrumb-separator">
+      <svg><!-- ChevronRight icon --></svg>
+    </li>
+    <li data-slot="breadcrumb-item">
       <span role="link" aria-disabled="true" aria-current="page" data-slot="breadcrumb-page">
         Breadcrumb
       </span>
@@ -186,33 +269,72 @@ Not applicable — Breadcrumb does not use Radix primitives.
 ### Raw CSS
 
 ```css
+/* BreadcrumbList */
 .BreadcrumbList {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.375rem;
   font-size: 0.875rem;
+  overflow-wrap: break-word;
   color: var(--muted-foreground);
 }
-@media (min-width: 640px) { .BreadcrumbList { gap: 0.625rem; } }
-.BreadcrumbItem { display: inline-flex; align-items: center; gap: 0.375rem; }
-.BreadcrumbLink { transition: color 150ms; }
-.BreadcrumbLink:hover { color: var(--foreground); }
-.BreadcrumbPage { font-weight: 400; color: var(--foreground); }
-.BreadcrumbSeparator > svg { width: 0.875rem; height: 0.875rem; }
-.BreadcrumbEllipsis { display: flex; width: 2.25rem; height: 2.25rem; align-items: center; justify-content: center; }
+
+@media (min-width: 640px) {
+  .BreadcrumbList {
+    gap: 0.625rem;
+  }
+}
+
+/* BreadcrumbItem */
+.BreadcrumbItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+/* BreadcrumbLink */
+.BreadcrumbLink {
+  transition: color 150ms;
+}
+.BreadcrumbLink:hover {
+  color: var(--foreground);
+}
+
+/* BreadcrumbPage */
+.BreadcrumbPage {
+  font-weight: 400;
+  color: var(--foreground);
+}
+
+/* BreadcrumbSeparator */
+.BreadcrumbSeparator > svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+/* BreadcrumbEllipsis */
+.BreadcrumbEllipsis {
+  display: flex;
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+}
 ```
 
 ### Tailwind Mapping
 
 | Element | Tailwind Classes | Purpose |
 |---------|-----------------|---------|
-| BreadcrumbList | `flex flex-wrap items-center gap-1.5 text-sm break-words text-muted-foreground sm:gap-2.5` | Responsive flex layout |
+| BreadcrumbList | `flex flex-wrap items-center gap-1.5 text-sm break-words text-muted-foreground sm:gap-2.5` | Responsive flex layout with muted text |
 | BreadcrumbItem | `inline-flex items-center gap-1.5` | Inline item layout |
-| BreadcrumbLink | `transition-colors hover:text-foreground` | Hover color transition |
-| BreadcrumbPage | `font-normal text-foreground` | Current page styling |
-| BreadcrumbSeparator | `[&>svg]:size-3.5` | Separator icon sizing |
-| BreadcrumbEllipsis | `flex size-9 items-center justify-center` | Ellipsis container |
+| BreadcrumbLink | `transition-colors hover:text-foreground` | Color transition on hover |
+| BreadcrumbPage | `font-normal text-foreground` | Current page styling (non-muted) |
+| BreadcrumbSeparator | `[&>svg]:size-3.5` | Separator icon sizing (14px) |
+| BreadcrumbEllipsis | `flex size-9 items-center justify-center` | Ellipsis container (36px tap target) |
+| BreadcrumbEllipsis > icon | `size-4` | Ellipsis icon sizing (16px) |
+| BreadcrumbEllipsis > sr text | `sr-only` | Screen reader "More" text |
 
 ## CSS Variable Dependencies
 
@@ -225,24 +347,31 @@ Not applicable — Breadcrumb does not use Radix primitives.
 
 ### Component Structure
 
+The component contains:
+
+**Breadcrumb** (composed component):
+- Full breadcrumb bar with multiple items and separators
+
+**.Breadcrumb Item** — 1 variant property:
+
 | Variant Property | Values |
 |-----------------|--------|
 | Type | Default, Hover, Dropdown, Ellipsis |
 
-Default layout: flex row → Text (text-sm, font-normal, muted-foreground)
-Hover uses foreground instead of muted-foreground. Dropdown adds a chevron icon. Ellipsis renders as a `...` icon.
+Type=Hover uses `text-foreground` instead of `text-muted-foreground`. Type=Dropdown adds a chevron icon. Type=Ellipsis renders as a `...` icon (20×20px).
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--muted-foreground)` | `--muted-foreground` | Default item text color |
 | `var(--foreground)` | `--foreground` | Hover/current item text color |
-| `font-sans` | `--font-sans` | Font family |
+| `--font-sans` | `--font-sans` | Font family |
 | `font-normal` | `font-normal` | Item text weight |
 | `text-sm` | `text-sm` | Item text size |
+| `leading-5` | `leading-5` | Item line height |
 
 ### Theme Behavior
 

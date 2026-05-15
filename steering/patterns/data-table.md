@@ -7,6 +7,7 @@
 - **Category:** Pattern (functional composition)
 - **Composes:** Table, Button, Checkbox, Input, Select, Dropdown Menu, Pagination
 - **Dependencies:** `@tanstack/react-table`
+- **Design reference:** (see component documentation)
 
 ## Behavior
 

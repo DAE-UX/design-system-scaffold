@@ -151,23 +151,19 @@ No keyboard interaction — Separator is a static visual element. It is not focu
 
 ### Component Structure
 
-Component is organized into orientation variants:
+Component organizes Separator into orientation variants:
 
 | Variant Property | Values |
 |-----------------|--------|
 | Horizontal | True, False |
 
-- Separator → Line (1px height, full width, rendered as vector stroke)
-- Horizontal=True: `w-full`, `h-0` (1px line via border/stroke)
-- Horizontal=False (vertical): `h-full`, `w-0` (1px line via border/stroke)
-
 No additional sub-components or nested layers.
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
 
-The Separator component in the design tool renders as a simple vector line stroke. No explicit CSS variable tokens are surfaced in the design context output — the line color is derived from the `--border` variable at the theme level.
+
+The Separator component renders as a simple vector line stroke. No explicit CSS variable tokens are surfaced in the design context output — the line color is derived from the `--border` variable at the theme level.
 
 | Token | CSS Variable | Purpose |
 |-------------|-------------|---------|

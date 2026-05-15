@@ -5,6 +5,7 @@
 ## Metadata
 
 - **Component Name:** Toast
+- **Source:** shadCN (`https://ui.shadcn.com/`)
 - **Dependencies:** None (visual component only; pair with a toast management library of choice)
 
 ## Behavior
@@ -361,8 +362,6 @@ function SaveButton() {
 
 ### Component Structure
 
-Source: shadCN
-
 The Toast component page contains the Toast variants, close button states, and light/dark examples.
 
 #### Toast Variants
@@ -397,23 +396,30 @@ Light and dark mode examples showing a default toast with title ("Scheduled: Cat
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
-
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--background` | `--background` | Default toast background |
 | `--foreground` | `--foreground` | Default toast text |
 | `--border` | `--border` | Default toast border |
 | `--input` | `--input` | Default action button border |
+| `--bg-input-30` | `--background` (at 30% opacity context) | Action button background |
 | `--destructive` | `--destructive` | Error toast background, border, close button bg |
 | `--destructive-foreground` | `--destructive-foreground` | Error toast text |
 | `--muted` | `--muted` | Error action button border |
-| `--ring` | `--ring` | Default close button focus ring |
-| `--radius` (derived) | `border-radius` | Toast and button border radius |
-| `font-sans` | `--font-sans` | Font family |
-| `font-semibold` (600) | `font-weight` | Title weight |
-| `text-sm` (14px) | `font-size` | Text size |
-| `shadow-lg` | `shadow-lg` | Toast container shadow |
+| `--destructive-60` | `rgba(220, 38, 38, 0.4)` | Error close button focus ring |
+| `--focus` | `--ring` | Default close button focus ring |
+| `--state/disabled` | `opacity: 0.5` | Close button default opacity |
+| `opacity` | `opacity: 0.9` | Description text opacity |
+| `box-shadow` | `shadow-lg` | Toast container shadow |
+| `box-shadow` | `shadow-2xs` | Action button shadow |
+| `--radius` (derived) | `calc(var(--radius)-2px)` | Toast and action button border radius |
+| `--radius` (derived) | `calc(var(--radius)-4px)` | Close button border radius |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-semibold` | `font-weight: 600` | Title weight |
+| `font-medium` | `font-weight: 500` | Action button weight |
+| `font-normal` | `font-weight: 400` | Description weight |
+| `--text-sm` | `font-size: 14px` | Text size |
+| `leading-5` | `line-height: 20px` | Line height |
 
 ### Theme Behavior
 

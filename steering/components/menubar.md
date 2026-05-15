@@ -543,9 +543,18 @@ No additional props beyond Radix MenubarMenu.
 
 ### Component Structure
 
-Menubar Trigger states: Selected (False/True)
+Component organizes Menubar into multiple sub-components:
 
-Menu Item variants:
+Menubar (composite bar):
+- Single variant showing a horizontal bar with 5 MenubarTrigger instances
+
+Menubar Trigger:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Selected | False, True |
+
+.Menubar Menu Item:
 
 | Variant Property | Values |
 |-----------------|--------|
@@ -553,24 +562,29 @@ Menu Item variants:
 | Variant | Default, Checked, Radio, Icon |
 | SubTrigger | False, True |
 
-Bar layout: flex row, background, border, h 36px, p 4px, gap 4px, rounded, shadow-xs
-Trigger (selected): accent bg, accent-foreground text, text-sm, font-medium
+Menubar Menu — single variant (assembled dropdown with items, separators, shortcuts)
+.Menubar Menu Title — single variant (non-interactive group heading)
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--background` | `--background` | Menubar background |
 | `--border` | `--border` | Menubar border |
 | `--foreground` | `--foreground` | Trigger text (unselected) |
 | `--accent` | `--accent` | Trigger background (selected/hover) |
 | `--accent-foreground` | `--accent-foreground` | Trigger text (selected/hover) |
-| `h-9` (36px) | `height` | Menubar height |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `font-size` | Trigger text size |
-| `shadow-xs` | `box-shadow` | Bar shadow |
+| `height` | `height` | Menubar height |
+| `padding` | `padding` / `gap` | Bar padding and trigger gap |
+| `padding` | `padding-inline` | Trigger horizontal padding |
+| `--radius` (derived) | `--radius` (derived) | Bar border radius |
+| `box-shadow` | `box-shadow` | Bar shadow |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Trigger font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Trigger text size |
 
 ### Theme Behavior
 

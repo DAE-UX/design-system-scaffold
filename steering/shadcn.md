@@ -1,4 +1,4 @@
-# shadCN Setup and Usage — Design System Skill
+# shadCN Setup and Usage
 
 > **TL;DR:** shadCN UI provides 57 pre-built components via CLI (`npx shadcn@latest`), configured through `components.json`. Not a traditional npm package — components are added directly to your project. Use `new-york` style (default is deprecated). Tailwind v4: leave `tailwind.config` blank. Supports namespaced registries for private/team components. For architecture, theming, and CSS variable details, see `technical-guidelines.md`.
 

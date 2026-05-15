@@ -41,8 +41,6 @@ A panel that slides in from the edge of the screen, built on the vaul library.
 - Don't overwhelm users with information — keep drawer content concise
 - Don't overload the footer
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -356,30 +354,41 @@ const [open, setOpen] = React.useState(false)
 
 ### Component Structure
 
-Drawer layout: flex column (overlay bg, justify-end) → Container
-Container: flex column (background, rounded top corners) → Handle Container + optional Header + Content + optional Footer
-Handle: centered bar (muted bg, 8px × 100px, rounded-full)
-Header: flex row (px 24px, py 16px, gap 12px) → Title text (text-base, font-medium)
-Content: flex column (p 16px)
-Footer: flex column (p 16px, gap 8px) → Primary button + Secondary button
+The component contains:
+
+**Drawer** (composed):
+- Full drawer with overlay, container, handle, header, content area, and footer
+
+**.Dialog Example Content** — placeholder content for drawer body
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--background)` | `--background` | Drawer container background |
 | `var(--card-foreground)` | `--card-foreground` | Header title text |
+| `var(--foreground)` | `--foreground` | Secondary button text |
 | `var(--muted)` | `--muted` | Handle bar background |
 | `var(--primary)` | `--primary` | Primary button background |
 | `var(--primary-foreground)` | `--primary-foreground` | Primary button text |
-| `--radius` | `--radius` | Container top border radius |
-| `p-4` (16px) | `p-4` | Content padding |
-| `px-6` (24px) | `px-6` | Header horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-medium` | Header title weight |
-| `text-base` (16px) | `text-base` | Header title size |
+| `var(--input)` | `--input` | Secondary button border |
+| `var(--border)` | `--border` | Content placeholder border |
+| `var(--radius)` | `--radius` | Container top border radius |
+| `--radius` (derived) | `--radius` (derived) | Button border radius |
+| `border-radius` | `rounded-full` | Handle bar shape |
+| `padding` (6 units) | `px-6` | Header horizontal padding |
+| `padding` (4 units) | `p-4` / `py-4` / `pt-4` | Content padding, header/footer vertical padding, handle top padding |
+| `padding` (3 units) | `gap-3` | Header gap |
+| `padding` (2 units) | `gap-2` | Footer button gap, button internal gap |
+| `padding` (1.5 units) | `gap-1.5` | Title-description gap |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-medium` | Header title, button text weight |
+| `text-base` | `text-base` | Header title size |
+| `text-sm` | `text-sm` | Button text size |
+| `leading-5` | `leading-5` | Button text line height |
+| `shadow-2xs` | `shadow-2xs` | Button box shadow |
 
 ### Theme Behavior
 

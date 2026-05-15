@@ -10,17 +10,67 @@ keywords:
   - accessibility
   - theming
   - ui
+  - radix
   - storybook
+  - workflows
+  - heuristic-review
   - prototyping
-version: 1.1.0
 author: AWS
+version: 1.2.0
 ---
 
-# Design System Power
+# Design System Scaffold
 
-A design system skill that separates the rules and guidance of a design system from the technology underneath it. A design team manages the standards centrally — styles, patterns, paradigms, accessibility, and composition rules — while engineering teams choose and manage their own technology stack.
+A design system power that separates the rules and guidance of a design system from the technology underneath it. A design team manages the standards centrally — styles, patterns, paradigms, accessibility, and composition rules — while engineering teams choose and manage their own technology stack.
 
-## What's included
+## How to Use This Power
+
+Before loading any steering file, identify the task type and load only what's needed:
+
+| Task | Load these files |
+|------|-----------------|
+| Implement or modify a specific component | `steering/design-system.md` + `steering/components/[name].md` + `steering/default-theme.md` |
+| Apply or validate the default theme | `steering/default-theme.md` + `steering/technical-guidelines.md` |
+| Generate a new theme | `steering/workflows.md` → "Generate a New Theme" + `steering/default-theme.md` (structure reference) |
+| Generate a Storybook | `steering/workflows.md` → "Generate a Storybook" + `steering/storybook.md` |
+| Compose a layout or page | Relevant template file + component files for components used |
+| Write UI copy or microcopy | `steering/copy-guidelines.md` + `steering/glossary.md` |
+| Review against design heuristics | `steering/design-guidelines.md` + `steering/ui-guidelines.md` |
+| Set up MCP connections | `steering/mcp.md` |
+| Validate generated code quality | Use the Output Validation Checklist below |
+
+**Theme selection:** Use the default theme unless the user specifies a custom theme.
+
+**Context budget:** Load max 3–4 steering files per task. If more are needed, load sequentially as sub-tasks complete.
+
+## Executable Workflows
+
+| User says… | Workflow | Load |
+|---|---|---|
+| "generate a new theme", "create a theme for [X]" | Generate a New Theme | `steering/workflows.md` |
+| "generate a Storybook", "set up Storybook" | Generate a Storybook | `steering/workflows.md` |
+
+## Key Rules
+
+1. Components reference CSS variables only — no hardcoded colors — because hardcoded values break theme switching and create maintenance debt when themes change.
+2. Design heuristics are advisory; component specs and theme definitions are authoritative — because heuristics guide composition, not component design. Overriding specs with heuristics creates inconsistency.
+3. Templates define layout structure only — no behavior, state management, or business logic — because templates are reusable blueprints; coupling logic to layout prevents reuse.
+4. All components must support both light and dark modes — because users expect mode switching and single-mode components break the experience.
+5. WCAG 2.2 conformance required for all components — because accessibility is a legal and ethical requirement, not optional polish.
+6. Theme variable names are fixed — never rename or restructure tokens — because renaming breaks all components that reference those variables and creates silent failures.
+
+## Output Validation Checklist
+
+Before presenting any generated code or theme to the user, verify:
+
+- [ ] All color values reference CSS variables — no hex, rgb, or oklch literals in component code
+- [ ] Both light and dark mode values are present in any theme output
+- [ ] All interactive components have focus-visible styles
+- [ ] ARIA roles and labels are present on all non-obvious interactive elements
+- [ ] Theme variable names exactly match the canonical list — no renames or new tokens
+- [ ] Any empty sections encountered in specs were not synthesized — user was informed of the gap
+
+## What's Included
 
 - 57 component specs with behavior, API, variants, accessibility, HTML structure, CSS, and theme support
 - 2 patterns (Data Table, Date Picker) showing functional compositions
@@ -31,19 +81,7 @@ A design system skill that separates the rules and guidance of a design system f
 - Technical implementation guides for shadCN, Tailwind, Storybook, Motion, and Lucide
 - Agent-executable workflows: Generate Theme and Generate Storybook
 
-## How to use
-
-Install as a Kiro Power:
-
-```bash
-cp -r kiro-design-system-power/ ~/.kiro/powers/kiro-design-system-power/
-```
-
-Or install via Kiro UI: Command Palette → "Powers: Configure" → "Install from folder".
-
-Once installed, ask the agent to generate a theme, set up a Storybook, prototype a UI layout, look up component specs, or check accessibility requirements.
-
-## Steering files
+## Steering Files
 
 All content is in the `steering/` directory:
 
@@ -61,6 +99,8 @@ All content is in the `steering/` directory:
 - `storybook.md` — Storybook configuration
 - `motion.md` — Motion animation library
 - `lucide.md` — Lucide icon library
+- `mantine.md` — Mantine translation layer
+- `pretext.md` — Pretext text measurement library
 - `mcp.md` — MCP server setup
 - `workflows.md` — Generate Theme and Generate Storybook workflows
 

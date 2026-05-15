@@ -190,28 +190,27 @@ Component organizes Sonner (Toast) into variant states and examples:
 |-----------------|--------|
 | Type | Default |
 
-- Content area: Title (`font-medium`, `text-sm`) + Description (`font-normal`, `text-sm`)
-- Action area: Button sub-component (`bg-primary`, `text-primary-foreground`, `rounded-4px`, `text-xs`, `font-medium`)
-- Container uses shadow-lg, rounded, border
-- Background: popover
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--popover` | `--popover` | Toast background |
 | `--foreground` | `--foreground` | Title text color |
 | `--muted-foreground` | `--muted-foreground` | Description text color |
 | `--border` | `--border` | Toast border |
 | `--primary` | `--primary` | Action button background |
+| `--primary-foreground` | `--primary-foreground` | Action button text |
+| `padding` | `padding` | Toast padding |
+| `padding` | `gap` | Gap between icon, content, and action |
 | `--radius` | `border-radius` | Toast border radius |
-| `p-4` (16px) | `padding` | Toast padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Title font weight |
-| `text-sm` (14px) | `font-size` | Text size |
+| `border-width` | `border-width` | Toast border width |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Title font weight |
+| `font-normal` | `font-weight` | Description font weight |
+| `--text-sm` | `font-size` | Text size (title and description) |
+| `--text-xs` | `font-size` | Action button text size |
 
 ### Theme Behavior
 

@@ -7,6 +7,7 @@
 - **Category:** Pattern (functional composition)
 - **Composes:** Calendar, Popover, Button, Select
 - **Dependencies:** `react-day-picker`, `date-fns`
+- **Design reference:** (see component documentation)
 
 ## Behavior
 
@@ -20,7 +21,7 @@ Date selection input that composes Calendar, Popover, and Button components. Use
 | Select date (single) | Click a day in Calendar | Date state updates, button label shows formatted date, popover closes |
 | Select date range | Click start day, then click end day | `DateRange` state updates with `from`/`to`, button shows range, popover stays open until both selected |
 | Navigate month | Click left/right chevron in Calendar header | Calendar renders previous/next month |
-| Navigate month/year | Use Select dropdowns in Calendar header | Calendar jumps to selected month/year |
+| Navigate month/year | Use Select dropdowns in Calendar header (design variant) | Calendar jumps to selected month/year |
 | Select preset | Choose from Select component (presets variant) | Date state updates to preset value, calendar reflects selection |
 | Clear selection | (Implementation-specific) | Date state resets, button shows placeholder text |
 
@@ -323,7 +324,7 @@ The calendar dropdown uses the following structure:
 - Month dropdown: jump to specific month
 - Year dropdown: jump to specific year
 
-#### Date Picker Example Layout (node `7008:49170`)
+#### Date Picker Example Layout
 
 Full assembled view: Date Picker input field positioned above, Calendar 13 Block dropdown below. The calendar shows a single month with the month/year select dropdowns in the header, 7-column day grid, and chevron navigation.
 

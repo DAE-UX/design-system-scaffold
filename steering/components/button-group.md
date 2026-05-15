@@ -13,7 +13,7 @@
 Groups related buttons together with merged borders and consistent styling. Creates a visually connected set of actions.
 
 - Merges border radii: first child keeps left radius, last child keeps right radius, middle children have no radius
-- Removes internal borders between adjacent children
+- Removes internal borders between adjacent children (`border-l-0` horizontal, `border-t-0` vertical)
 - Supports horizontal (default) and vertical orientation
 - Nestable: inner `ButtonGroup` components get spacing (`gap-2`) instead of merged borders
 - `ButtonGroupSeparator` visually divides buttons (recommended for non-outline variants)
@@ -32,8 +32,6 @@ Groups related buttons together with merged borders and consistent styling. Crea
 #### Don't
 - Don't add arbitrary content in action popovers — use them for success/error states only
 - Don't place actions requiring feedback (like copy-to-clipboard) in the overflow menu — keep them visible
-
-Sources: shadCN, Radix UI
 
 ## API
 
@@ -58,19 +56,21 @@ Sources: shadCN, Radix UI
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | orientation | `"horizontal" \| "vertical"` | `"vertical"` | Separator direction |
+| className | `string` | — | Additional CSS classes |
 
 #### ButtonGroupText
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | asChild | `boolean` | `false` | Render as child element (e.g., `<Label>`) |
+| className | `string` | — | Additional CSS classes |
 
 ### Variants
 
 | Variant | Description | Use Case |
 |---------|-------------|----------|
-| `orientation="horizontal"` | Buttons in a row, left/right borders merged | Default toolbar layout |
-| `orientation="vertical"` | Buttons stacked, top/bottom borders merged | Vertical action groups |
+| `orientation="horizontal"` | Buttons arranged in a row, left/right borders merged | Default toolbar layout |
+| `orientation="vertical"` | Buttons stacked vertically, top/bottom borders merged | Vertical action groups |
 
 ### Data Attributes
 
@@ -105,6 +105,23 @@ Not applicable — ButtonGroup does not use Radix primitives.
 </ButtonGroup>
 ```
 
+### Nested Groups (with Spacing)
+
+```tsx
+<ButtonGroup>
+  <ButtonGroup>
+    <Button variant="outline">Archive</Button>
+    <Button variant="outline">Report</Button>
+  </ButtonGroup>
+  <ButtonGroup>
+    <Button variant="outline">Snooze</Button>
+    <Button variant="outline" size="icon" aria-label="More">
+      <MoreHorizontalIcon />
+    </Button>
+  </ButtonGroup>
+</ButtonGroup>
+```
+
 ### With Separator
 
 ```tsx
@@ -114,6 +131,15 @@ Not applicable — ButtonGroup does not use Radix primitives.
   <Button size="icon" aria-label="Options">
     <ChevronDownIcon />
   </Button>
+</ButtonGroup>
+```
+
+### With Text Label
+
+```tsx
+<ButtonGroup>
+  <ButtonGroupText>Label</ButtonGroupText>
+  <Button variant="outline">Action</Button>
 </ButtonGroup>
 ```
 
@@ -137,13 +163,13 @@ Not applicable — ButtonGroup does not use Radix primitives.
 | Element | Role / Attribute | Notes |
 |---------|-----------------|-------|
 | ButtonGroup | `role="group"` | Groups related buttons semantically |
-| ButtonGroup | `aria-label` or `aria-labelledby` | Should provide accessible name |
+| ButtonGroup | `aria-label` or `aria-labelledby` | Should provide accessible name for the group |
 
 ### Keyboard Behavior
 
 | Key | Behavior |
 |-----|----------|
-| Tab | Moves focus between buttons in the group |
+| Tab | Moves focus between buttons in the group (standard tab order) |
 | Space / Enter | Activates the focused button |
 
 ## HTML
@@ -158,16 +184,31 @@ Not applicable — ButtonGroup does not use Radix primitives.
 </div>
 ```
 
+### With Separator
+
+```html
+<div role="group" data-slot="button-group">
+  <button data-slot="button">Save</button>
+  <div role="separator" data-slot="button-group-separator"></div>
+  <button data-slot="button" aria-label="Options">
+    <svg><!-- icon --></svg>
+  </button>
+</div>
+```
+
 ## CSS
 
 ### Raw CSS
 
 ```css
+/* ButtonGroup base */
 .ButtonGroup {
   display: flex;
   width: fit-content;
   align-items: stretch;
 }
+
+/* Horizontal: merge borders */
 .ButtonGroup[data-orientation="horizontal"] > *:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -177,9 +218,33 @@ Not applicable — ButtonGroup does not use Radix primitives.
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.ButtonGroup[data-orientation="vertical"] { flex-direction: column; }
-.ButtonGroup > *:focus-visible { position: relative; z-index: 10; }
-.ButtonGroup:has(> [data-slot="button-group"]) { gap: 0.5rem; }
+
+/* Vertical: merge borders */
+.ButtonGroup[data-orientation="vertical"] {
+  flex-direction: column;
+}
+.ButtonGroup[data-orientation="vertical"] > *:not(:first-child) {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: 0;
+}
+.ButtonGroup[data-orientation="vertical"] > *:not(:last-child) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Focus z-index */
+.ButtonGroup > *:focus-visible {
+  position: relative;
+  z-index: 10;
+}
+
+/* Nested groups get spacing */
+.ButtonGroup:has(> [data-slot="button-group"]) {
+  gap: 0.5rem;
+}
+
+/* ButtonGroupText */
 .ButtonGroupText {
   display: flex;
   align-items: center;
@@ -190,8 +255,15 @@ Not applicable — ButtonGroup does not use Radix primitives.
   padding: 0 1rem;
   font-size: 0.875rem;
   font-weight: 500;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
-.ButtonGroupSeparator { margin: 0; align-self: stretch; background-color: var(--input); }
+
+/* ButtonGroupSeparator */
+.ButtonGroupSeparator {
+  margin: 0;
+  align-self: stretch;
+  background-color: var(--input);
+}
 ```
 
 ### Tailwind Mapping
@@ -199,22 +271,30 @@ Not applicable — ButtonGroup does not use Radix primitives.
 | Element | Tailwind Classes | Purpose |
 |---------|-----------------|---------|
 | ButtonGroup (base) | `flex w-fit items-stretch` | Flex container |
+| ButtonGroup (focus) | `[&>*]:focus-visible:relative [&>*]:focus-visible:z-10` | Focus ring visibility |
+| ButtonGroup (nested) | `has-[>[data-slot=button-group]]:gap-2` | Spacing for nested groups |
 | ButtonGroup (horizontal) | `[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none` | Border merging |
-| ButtonGroup (vertical) | `flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none` | Vertical merging |
-| ButtonGroupText | `flex items-center gap-2 rounded-md border bg-muted px-4 text-sm font-medium shadow-xs` | Text label |
-| ButtonGroupSeparator | `relative m-0! self-stretch bg-input` | Separator |
+| ButtonGroup (vertical) | `flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none` | Vertical border merging |
+| ButtonGroup (input) | `[&>input]:flex-1` | Input fills available space |
+| ButtonGroup (select) | `has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit` | Select integration |
+| ButtonGroupText | `flex items-center gap-2 rounded-md border bg-muted px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4` | Text label styling |
+| ButtonGroupSeparator | `relative m-0! self-stretch bg-input data-[orientation=vertical]:h-auto` | Separator styling |
 
 ## CSS Variable Dependencies
 
 | Variable | Purpose | Source |
 |----------|---------|--------|
 | `--muted` | ButtonGroupText background | `shadcn` |
-| `--border` | ButtonGroupText border | `shadcn` |
+| `--border` | ButtonGroupText border (implicit from `border` class) | `shadcn` |
 | `--input` | ButtonGroupSeparator background | `shadcn` |
 
 ## Theme Support
 
 ### Component Structure
+
+The component contains:
+
+**Button Group** — 2 variant properties:
 
 | Variant Property | Values |
 |-----------------|--------|
@@ -223,21 +303,32 @@ Not applicable — ButtonGroup does not use Radix primitives.
 
 Total: 6 variant combinations (3 types × 2 orientations)
 
-Default horizontal layout: flex row (gap 0) → Button items (rounded on first/last only) separated by ButtonGroupSeparator (1px wide, self-stretch). First button gets left radius, last button gets right radius, middle buttons have no radius.
+**Button Group & Input** — 1 variant property:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Property 1 | Right, Left & right, Left |
+
+Positions input field relative to button group (left, right, or both sides).
+
+**.Button Group Popover Example Content** — example composition showing dropdown menu integration.
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--primary)` | `--primary` | Default type button background, separator color |
 | `var(--primary-foreground)` | `--primary-foreground` | Default type button text |
-| `--radius` (derived) | `--radius` | First/last button border radius |
-| `px-4` (16px) | `px-4` | Button horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-medium` | Button text weight |
-| `text-sm` (14px) | `text-sm` | Button text size |
+| `--radius` (derived) | `--radius` (derived) | First/last button border radius |
+| `padding` (4 units) | `px-4` | Button horizontal padding |
+| `padding` (2 units) | `py-2` / `gap-2` | Button vertical padding, icon gap |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-medium` | Button text weight |
+| `text-sm` | `text-sm` | Button text size |
+| `leading-5` | `leading-5` | Button text line height |
+| `shadow-2xs` | `shadow-2xs` | Button box shadow |
 
 ### Theme Behavior
 

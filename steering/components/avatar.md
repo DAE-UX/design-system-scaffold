@@ -33,8 +33,6 @@ An image element with a fallback for representing the user. Displays a user phot
 - Don't use custom sizes that break alignment with adjacent text or components
 - Don't omit fallback content (initials or placeholder) when image fails to load
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -151,7 +149,38 @@ No component-specific Radix CSS variables.
 </Avatar>
 ```
 
+### Badge with Icon
+
+```tsx
+<Avatar>
+  <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+  <AvatarFallback>CN</AvatarFallback>
+  <AvatarBadge>
+    <CheckIcon />
+  </AvatarBadge>
+</Avatar>
+```
+
 ### Avatar Group (Stacked)
+
+```tsx
+<AvatarGroup>
+  <Avatar>
+    <AvatarImage src="..." alt="User 1" />
+    <AvatarFallback>U1</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarImage src="..." alt="User 2" />
+    <AvatarFallback>U2</AvatarFallback>
+  </Avatar>
+  <Avatar>
+    <AvatarImage src="..." alt="User 3" />
+    <AvatarFallback>U3</AvatarFallback>
+  </Avatar>
+</AvatarGroup>
+```
+
+### Avatar Group with Count
 
 ```tsx
 <AvatarGroup>
@@ -171,14 +200,33 @@ No component-specific Radix CSS variables.
 
 ```tsx
 <Avatar size="sm">
+  <AvatarImage src="..." alt="Small" />
   <AvatarFallback>SM</AvatarFallback>
 </Avatar>
+
 <Avatar size="default">
+  <AvatarImage src="..." alt="Default" />
   <AvatarFallback>DF</AvatarFallback>
 </Avatar>
+
 <Avatar size="lg">
+  <AvatarImage src="..." alt="Large" />
   <AvatarFallback>LG</AvatarFallback>
 </Avatar>
+```
+
+### With Tooltip
+
+```tsx
+<Tooltip>
+  <TooltipTrigger>
+    <Avatar>
+      <AvatarImage src="..." alt="@shadcn" />
+      <AvatarFallback>CN</AvatarFallback>
+    </Avatar>
+  </TooltipTrigger>
+  <TooltipContent>@shadcn</TooltipContent>
+</Tooltip>
 ```
 
 ## Accessibility
@@ -217,11 +265,28 @@ No keyboard interaction — Avatar is a static display component. When used as a
 </span>
 ```
 
+### Avatar Group
+
+```html
+<div data-slot="avatar-group">
+  <span data-size="default" data-slot="avatar">
+    <img src="..." alt="User 1" />
+    <span>U1</span>
+  </span>
+  <span data-size="default" data-slot="avatar">
+    <img src="..." alt="User 2" />
+    <span>U2</span>
+  </span>
+  <div data-slot="avatar-group-count">+3</div>
+</div>
+```
+
 ## CSS
 
 ### Raw CSS
 
 ```css
+/* Avatar root */
 .Avatar {
   position: relative;
   display: flex;
@@ -232,15 +297,19 @@ No keyboard interaction — Avatar is a static display component. When used as a
   border-radius: 9999px;
   user-select: none;
 }
+
+/* Size variants */
 .Avatar[data-size="sm"] { width: 1.5rem; height: 1.5rem; }
 .Avatar[data-size="lg"] { width: 2.5rem; height: 2.5rem; }
 
+/* Image */
 .AvatarImage {
   aspect-ratio: 1 / 1;
   width: 100%;
   height: 100%;
 }
 
+/* Fallback */
 .AvatarFallback {
   display: flex;
   width: 100%;
@@ -253,6 +322,11 @@ No keyboard interaction — Avatar is a static display component. When used as a
   color: var(--muted-foreground);
 }
 
+.Avatar[data-size="sm"] .AvatarFallback {
+  font-size: 0.75rem;
+}
+
+/* Badge */
 .AvatarBadge {
   position: absolute;
   right: 0;
@@ -265,13 +339,37 @@ No keyboard interaction — Avatar is a static display component. When used as a
   background-color: var(--primary);
   color: var(--primary-foreground);
   outline: 2px solid var(--background);
+  user-select: none;
 }
 
+/* Badge sizes */
+.Avatar[data-size="sm"] .AvatarBadge { width: 0.5rem; height: 0.5rem; }
+.Avatar[data-size="default"] .AvatarBadge { width: 0.625rem; height: 0.625rem; }
+.Avatar[data-size="lg"] .AvatarBadge { width: 0.75rem; height: 0.75rem; }
+
+/* Group */
 .AvatarGroup {
   display: flex;
   margin-left: -0.5rem;
 }
+
 .AvatarGroup > .Avatar {
+  outline: 2px solid var(--background);
+}
+
+/* Group count */
+.AvatarGroupCount {
+  position: relative;
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background-color: var(--muted);
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
   outline: 2px solid var(--background);
 }
 ```
@@ -284,9 +382,16 @@ No keyboard interaction — Avatar is a static display component. When used as a
 | Avatar (sm) | `data-[size=sm]:size-6` | 24px size |
 | Avatar (lg) | `data-[size=lg]:size-10` | 40px size |
 | AvatarImage | `aspect-square size-full` | Fill container |
-| AvatarFallback | `flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground` | Centered fallback |
-| AvatarBadge | `absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground ring-2 ring-background select-none` | Badge indicator |
-| AvatarGroup | `flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background` | Overlapping layout |
+| AvatarFallback | `flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground` | Centered fallback with muted styling |
+| AvatarFallback (sm) | `group-data-[size=sm]/avatar:text-xs` | Smaller text for sm size |
+| AvatarBadge | `absolute right-0 bottom-0 z-10 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground ring-2 ring-background select-none` | Positioned badge indicator |
+| AvatarBadge (sm) | `group-data-[size=sm]/avatar:size-2 group-data-[size=sm]/avatar:[&>svg]:hidden` | 8px badge, hide icon |
+| AvatarBadge (default) | `group-data-[size=default]/avatar:size-2.5 group-data-[size=default]/avatar:[&>svg]:size-2` | 10px badge, 8px icon |
+| AvatarBadge (lg) | `group-data-[size=lg]/avatar:size-3 group-data-[size=lg]/avatar:[&>svg]:size-2` | 12px badge, 8px icon |
+| AvatarGroup | `flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background` | Overlapping layout with ring |
+| AvatarGroupCount | `relative flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-sm text-muted-foreground ring-2 ring-background` | Count indicator matching avatar size |
+| AvatarGroupCount (sm) | `group-has-data-[size=sm]/avatar-group:size-6` | Match sm avatar size |
+| AvatarGroupCount (lg) | `group-has-data-[size=lg]/avatar-group:size-10` | Match lg avatar size |
 
 ## CSS Variable Dependencies
 
@@ -302,32 +407,40 @@ No keyboard interaction — Avatar is a static display component. When used as a
 
 ### Component Structure
 
+The component contains two component sets:
+
 **Avatar** — 3 variant properties:
 
 | Variant Property | Values |
 |-----------------|--------|
 | Type | Image, Fallback |
-| Size | sm (24px), default (32px), lg (40px) |
+| Size | 2X Small (20px), X Small (24px), Small (32px), Medium (40px), Large (48px), X-Large (56px), 2X-Large (64px), 3X-Large (80px), 4X-Large (96px), 5X-Large (112px), 6X-Large (128px) |
 | Shape | Circle, Rounded rectangle |
 
-Image layout: container (`rounded-full`, size per variant) → Image (object-cover, fills container)
+Total: 44 variant combinations (2 types × 11 sizes × 2 shapes)
 
-**Avatar Group**: flex row with overlapping avatars (negative spacing) + ring border for visual separation.
+**Avatar Group** — 1 variant property:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Size | 2X Small, X Small, Small, Medium, Large |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable / Tailwind Utility | Purpose |
-|-------|--------------------------------|---------|
+|-------------|--------------------------------|---------|
 | `var(--muted)` | `--muted` / `bg-muted` | Fallback background |
 | `var(--foreground)` | `--foreground` / `text-foreground` | Fallback initials text color |
 | `var(--background)` | `--background` / `ring-background` | Avatar group ring color |
-| `rounded-full` | `rounded-full` | Avatar shape (circle) |
-| `size-10` (40px) | `size-10` | Medium avatar size |
-| `ring-2` | `ring-2` | Group avatar ring width |
-| `font-sans` | `--font-sans` / `font-sans` | Font family |
-| `text-sm` (14px) | `text-sm` | Fallback text size |
+| `border-radius` | `rounded-full` | Avatar shape (circle) |
+| `width` | `size-10` (Tailwind `40px`) | Medium avatar size |
+| `border-width` | `ring-2` (approx `1.33px`) | Group avatar ring width |
+| `--font-sans` | `--font-sans` / `font-sans` | Font family |
+| `font-normal` | `font-normal` (Tailwind `400`) | Fallback text weight |
+| `text-sm` | `text-sm` (Tailwind `14px`) | Fallback text size (Medium) |
+| `leading-5` | `leading-5` (Tailwind `20px`) | Fallback text line height |
 
 ### Theme Behavior
 

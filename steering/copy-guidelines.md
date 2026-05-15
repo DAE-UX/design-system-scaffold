@@ -1,4 +1,4 @@
-# Copy Guidelines — Design System Skill
+# Copy Guidelines
 
 > **TL;DR:** Voice and tone rules for all in-product copy, including conversational AI interfaces. Voice is always approachable, proactive, dynamic, and guiding. Tone adapts by situation using a sliding scale (direct → educational → helpful → supportive) driven by contextual signals. Use active voice, present tense, sentence case, <25-word sentences. Target Flesch score ≤70.0. Conversational AI copy follows additional identity, formatting, and interaction rules. Follow the 7-step Agent Workflow and Compliance Checklist before publishing.
 
@@ -6,7 +6,10 @@
 
 ## Scope
 
+These guidelines apply to all text that appears in the UI — both long-form content and short UI copy. When the agent generates UI code, every text string visible to the user must follow these rules.
+
 **Use for:**
+- All UI text: button labels, headings, menu items, tab labels, breadcrumbs, tooltips, placeholders, badge text, empty states, column headers, form labels, toggle labels, and any other text rendered in the interface
 - UI labels, help text, instructions, notifications, error messages
 - Chat interface responses and conversational interactions
 - Settings, configuration, and onboarding flows
@@ -79,10 +82,11 @@ When tone shifts, word choices (informational vs. instructive), sentence length 
 - Use specific nouns rather than pronouns where clarity requires it
 
 ### Apply Capitalization Rules
-- Default to sentence case
+- Default to sentence case across all UI text: buttons, labels, headings, menu items, tabs, tooltips, placeholders, and all other interface elements
 - Capitalize only the first word and proper nouns
-- Capitalize proper nouns and brand names correctly in context
+- Capitalize proper nouns and brand names correctly in context (see `glossary.md` for capitalization rules)
 - Never use Title Case for headings/phrases
+- Title Case, ALL CAPS, or other case styles are reserved for marketing and hero messaging — brand-related content, not functional UI
 
 ### Use Directional and Device-Independent Language
 - Avoid directional language: use "previous" not "above", use "following" not "below"
@@ -272,7 +276,7 @@ How to improve:
 ### Calculate Readability Score
 
 Formula:
-```
+```text
 avg_sentence_length = words / sentences
 avg_syllables_per_word = syllables / words
 score = 206.835 - (1.015 * avg_sentence_length) - (84.6 * avg_syllables_per_word)

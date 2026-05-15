@@ -36,8 +36,6 @@ A range input that allows users to select one or more numeric values by dragging
 - Don't use reference values for information imperative to selection (not always visible on small viewports)
 - Don't use reference labels for small numeric sliders (1-5 with labels 2,3,4 clutters the interface)
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -259,7 +257,7 @@ Radix Slider does not expose CSS variables. Layout and fill are handled via Tail
 
 ### Component Structure
 
-Component is organized into range variants and a sub-component:
+Component organizes Slider into range variants and a sub-component:
 
 Slider:
 | Variant Property | Values |
@@ -271,21 +269,20 @@ Slider:
 |-----------------|--------|
 | State | Enabled, Focus |
 
-- Range=True adds a second .Slider Item thumb for the range endpoint
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--secondary` | `--secondary` | Track background |
 | `--primary` | `--primary` | Range fill and thumb border |
 | `--background` | `--background` | Thumb background |
-| `h-1.5` (6px) | `height` | Track height |
-| `size-4` (16px) | `width` / `height` | Thumb size |
-| `rounded-full` | `border-radius` | Track and thumb rounding |
-| `shadow-md` | `box-shadow` | Thumb shadow |
+| `width` | `height` | Track height |
+| `width` | `width` / `height` | Thumb size |
+| `border-radius` | `border-radius` | Track and thumb rounding |
+| `border-width` | `border-width` | Thumb border width |
+| `box-shadow` | `box-shadow` | Thumb shadow (two layers) |
 
 ### Theme Behavior
 

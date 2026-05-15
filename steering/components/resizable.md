@@ -6,7 +6,7 @@
 
 - **Component Name:** Resizable
 - **Source:** shadCN
-- **Dependencies:** `react-resizable-panels`
+- **Dependencies:** `react-resizable-panels@^4`
 
 ## Behavior
 
@@ -236,7 +236,7 @@ Not applicable — Resizable does not use Radix primitives.
 
 ### Component Structure
 
-Component is organized into assembled examples and a sub-component:
+Component organizes Resizable into assembled examples and a sub-component:
 
 Assembled examples (no variant properties — fixed compositions):
 - Resizable Default — 2 horizontal panels + 1 vertical split (3 panels total), with grip handles
@@ -248,24 +248,22 @@ Assembled examples (no variant properties — fixed compositions):
 |-----------------|--------|
 | Orientation | Horizontal, Vertical |
 
-- Root → Panel 01 + Handle (horizontal) + Left container (Panel 02 + Handle (vertical) + Panel 03)
-- Root uses border, rounded with flex layout
-- Panels use flex-1 with overflow clip, p 24px, centered text (foreground, text-xl, font-medium)
-- Thumb is absolutely centered on the handle with z-10
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--border` | `--border` | Handle line, thumb background, root border |
 | `--foreground` | `--foreground` | Panel text color |
 | `--radius` | `--radius` | Root border radius |
-| `p-6` (24px) | `padding` | Panel padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Panel text weight |
-| `text-xl` | `font-size` | Panel text size |
+| `--radius` (derived) | `border-radius` (derived) | Thumb border radius |
+| `padding` | `padding` | Panel padding |
+| `border-width` | `border-width` | Root border width |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Panel text weight |
+| `--text-xl` | `font-size` | Panel text size |
+| `leading-8` | `line-height` | Panel text line height |
 
 ### Theme Behavior
 

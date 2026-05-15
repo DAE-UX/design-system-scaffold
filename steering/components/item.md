@@ -35,8 +35,6 @@ A flexible list item layout component for building structured lists, settings pa
 #### Don't
 - Don't use outside of a list context. Don't mix item sizes within the same list.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -425,7 +423,9 @@ No keyboard interaction — Item is a layout container. When rendered as a link 
 
 ### Component Structure
 
-Item sub-components:
+Component organizes Item into multiple sub-components:
+
+Item (main):
 
 | Variant Property | Values |
 |-----------------|--------|
@@ -433,28 +433,55 @@ Item sub-components:
 | Size | Default, Small |
 | State | Enabled, Hover |
 
-Media types: Icon, Spinner, Feature icon, Avatar, Avatar Group, Image
-Actions: Button1, Button2, Icon, Text (each true/false)
+.Item Media:
 
-Layout: optional Header + Container (Media + Content + Actions) + optional Footer
-Container: flex row (gap 16px). Content: flex column (gap 4px, title + description)
-Item padding: 16px, border radius from `--radius`
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Icon, Spinner, Feature icon, Avatar, Avatar Group, Image |
+
+.Item Actions:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Button1 | true, false |
+| Button2 | true, false |
+| Icon | true, false |
+| Text | true, false |
+
+.Item Header — single variant (image container, 128×128)
+.Item Footer — single variant (avatar + text + progress + buttons)
+Item Group — single variant (list of items with separators)
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--foreground` | `--foreground` | Title text color |
-| `--muted-foreground` | `--muted-foreground` | Description text color |
+|-------------|-------------|---------|
+| `--foreground` | `--foreground` | Title text color, button text |
+| `--muted-foreground` | `--muted-foreground` | Description text color, footer text |
 | `--muted` | `--muted` | Media icon background |
 | `--border` | `--border` | Media icon border, outline variant border |
 | `--input` | `--input` | Action button border |
+| `--primary` | `--primary` | Footer primary button background, progress fill |
+| `--primary-foreground` | `--primary-foreground` | Footer primary button text |
+| `--secondary` | `--secondary` | Progress track background |
+| `--bg-input-30` | `--input` (with opacity) | Action button background |
 | `--radius` | `--radius` | Item border radius |
-| `p-4` (16px) | `padding` | Item padding |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `font-size` | Text size |
+| `--radius` (derived) | `--radius` (derived) | Button border radius |
+| `--radius` (derived) | `--radius` (derived) | Header image border radius |
+| `border-radius` | `border-radius` | Avatar, progress border radius |
+| `padding` | `padding` / `gap` | Item padding, container gap |
+| `padding` | `gap` / `padding` | Content gap, button padding, actions gap |
+| `padding` | `gap` | Title-description gap |
+| `box-shadow` | `box-shadow` | Button shadow color |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Title font weight |
+| `font-normal` | `font-weight` | Description font weight |
+| `leading-5` | `line-height` | Text line height |
+| `leading-4` | `line-height` | Small text line height |
+| `--text-sm` | `font-size` | Title and description text size |
+| `--text-xs` | `font-size` | Button label, footer text size |
 
 ### Theme Behavior
 

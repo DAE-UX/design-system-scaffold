@@ -34,8 +34,6 @@ A composite container that combines an input or textarea with addons, buttons, i
 #### Don't
 - Don't nest input groups. Don't place too many elements in a single group — keep it focused.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -328,7 +326,9 @@ No additional keyboard interaction — Input Group is a layout container. The in
 
 ### Component Structure
 
-Input Group sub-components:
+Component organizes Input Group into multiple sub-components:
+
+Input Group (main):
 
 | Variant Property | Values |
 |-----------------|--------|
@@ -336,28 +336,52 @@ Input Group sub-components:
 | State | Enabled, Focus, Filled, Disabled |
 | Error | False, True |
 
-Addon Inline types: Check circle, Spinner, Icon, Text, Button, Kbd
-Addon Block positions: Start, End
-Button types: Default, Secondary, Destructive, Outline, Ghost, Link
+Input Group Addon Inline:
 
-Layout: flex row (gap 8px, h 36px, px 12px, py 8px), rounded, shadow-xs, background → Addon Inline (start) + Input + Addon Inline (end)
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Check circle, Spinner, Icon, Text, Button, Kbd |
+
+InputGroup Addon Block:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Position | Start, End |
+
+Input Group Button:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Default, Secondary, Destructive, Outline, Ghost, Link |
+| State | Enabled, Hover, Focus, Loading, Disabled, Active |
+| Size | X-Small, Small, Icon small, Icon x-small |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--input` | `--input` | Group border color, background (with opacity) |
+|-------------|-------------|---------|
+| `--bg-input-30` | `--input` (with opacity) | Group background |
+| `--input` | `--input` | Group border color |
 | `--muted-foreground` | `--muted-foreground` | Addon text/icon color, placeholder |
 | `--foreground` | `--foreground` | Check circle addon background |
 | `--muted` | `--muted` | Kbd background |
-| `--radius` (derived) | `--radius` | Group border radius |
-| `h-9` (36px) | `height` | Group height |
-| `px-3` (12px) | `padding-inline` | Horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `font-size` | Text size |
-| `shadow-xs` | `box-shadow` | Shadow |
+| `border-width` | `border-width` | Border width |
+| `--radius` (derived) | `--radius` (derived) | Group border radius |
+| `--radius` (derived) | `--radius` (derived) | Kbd border radius |
+| `height` | `height` | Group height |
+| `padding` | `padding-inline` | Horizontal padding |
+| `padding` | `gap` / `padding` | Gap between addons and input |
+| `box-shadow` | `box-shadow` | Shadow color |
+| `box-shadow` | `box-shadow` offset-y | Shadow offset |
+| `box-shadow` | `box-shadow` blur | Shadow blur |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Addon text font weight |
+| `font-normal` | `font-weight` | Input text font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Text size |
+| `--text-xs` | `font-size` | Kbd text size |
 
 ### Theme Behavior
 

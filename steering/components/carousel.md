@@ -41,8 +41,6 @@ A slideshow component for cycling through content slides. Built on Embla Carouse
 - Don't hide navigation indicators
 - Don't use carousels purely to fill space — every slide should have a reason
 
-Sources: shadCN, Radix UI, UI Guidelines
-
 ## API
 
 ### Parts
@@ -390,6 +388,8 @@ Carousel itself uses no CSS variables directly. Navigation buttons inherit from 
 
 ### Component Structure
 
+The component contains three sub-component sets:
+
 **Carousel Arrows** — 4 variant properties:
 
 | Variant Property | Values |
@@ -399,22 +399,35 @@ Carousel itself uses no CSS variables directly. Navigation buttons inherit from 
 | Focus | False, True |
 | Size | Small (32px), Medium (44px), Large (64px) |
 
-Arrow layout: flex center (32×32px default, background, border, rounded-full, shadow) → Arrow icon (16×16px)
+Total: 12 variant combinations shown (4 states × 3 sizes)
 
-**Carousel Card** — Types: Image, Component swap
+**Carousel Card** — 1 variant property:
 
-**Carousel** (composed) — Horizontal/Vertical × Large/Small
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Image, Component swap |
+
+**Carousel** (composed) — 2 variant properties:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Horizontal | True, False |
+| Size | Large, Small |
+
+Total: 4 variant combinations
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--background)` | `--background` | Arrow button background |
 | `var(--border)` | `--border` | Arrow button border |
-| `rounded-full` | `rounded-full` | Arrow button shape |
-| `size-8` (32px) | `size-8` | Small arrow button size |
+| `border-radius` | `rounded-full` | Arrow button shape |
+| `width` | `size-8` | Small arrow button size |
+| `border-width` | `border` | Arrow button border width |
+| `padding` (3 units) | `px-3` | Arrow button horizontal padding |
 | `shadow-2xs` | `shadow-2xs` | Arrow button box shadow |
 
 ### Theme Behavior

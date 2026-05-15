@@ -3,9 +3,10 @@
 ## Metadata
 
 - **Name:** Sidebar Template
-- **Source:** shadCN
+- **Source:** shadCN (`https://ui.shadcn.com/`)
 - **Category:** Template (layout blueprint)
 - **Uses:** Sidebar (component), Breadcrumb, Separator, Dropdown Menu, Avatar, Sheet
+- **Design reference:** (see component documentation)
 
 ## Layout Structure
 
@@ -13,7 +14,7 @@ Full-page application shell with a collapsible sidebar and a main content area. 
 
 The base layout is a horizontal two-panel split: sidebar (fixed, left) + content (flex, fills remaining width). SidebarProvider wraps both panels and manages open/closed state, mobile detection, and keyboard shortcut (Ctrl/Cmd+B).
 
-```
+```text
 ┌──────────────────────────────────────────────────┐
 │ SidebarProvider                                  │
 │ ┌────────────┬───────────────────────────────┐   │
@@ -49,11 +50,11 @@ The base layout is a horizontal two-panel split: sidebar (fixed, left) + content
 | Mobile (<md) | Sidebar renders inside a Sheet overlay. Width: `--sidebar-width-mobile` (`18rem`). Triggered by SidebarTrigger. Sheet slides in from the sidebar's `side` prop direction. |
 | Icon-collapsed | Labels, sub-menus, group labels, and group actions are hidden. SidebarMenuButton with `tooltip` prop shows tooltip on hover. SidebarRail provides click/double-click toggle. |
 
-## Component Reference
+## Design Reference
 
-### Layout Examples
+### Component Structure
 
-15 sidebar layout examples:
+The design page contains 15 sidebar layout examples:
 
 | Example | Description |
 |---------|-------------|

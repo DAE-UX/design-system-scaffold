@@ -1,4 +1,4 @@
-# Technical Guidelines — Design System Skill
+# Technical Guidelines
 
 > **TL;DR:** Framework-agnostic technical rules for the design system. Architecture stack: CSS variables (theming layer) → Tailwind CSS v4 (utility framework) → Radix UI (accessible primitives) → shadCN UI (pre-styled components) → your application. Theming uses OKLCH CSS variables in `:root` / `.dark` with background/foreground naming convention. Tailwind v4 uses `@theme` directive for design tokens. Breakpoints: 8-tier scale from 320px (xs) to 2560px (4xl). All components must support light/dark modes via CSS variables — no hardcoded colors.
 
@@ -14,7 +14,7 @@ Framework-agnostic technical rules, architecture patterns, and configuration sta
 
 ## Architecture Stack
 
-```
+```text
 ┌─────────────────────────────────┐
 │  Your Application               │
 ├─────────────────────────────────┤
@@ -35,8 +35,6 @@ Framework-agnostic technical rules, architecture patterns, and configuration sta
 ---
 
 ## Theming Implementation
-
-Source: `https://ui.shadcn.com/docs/theming`
 
 ### CSS Variable Convention
 
@@ -163,13 +161,9 @@ The `inline` keyword is required because these reference other CSS variables.
 | `--sidebar-border` | `oklch(0.922 0 0)` | `oklch(1 0 0 / 10%)` |
 | `--sidebar-ring` | `oklch(0.708 0 0)` | `oklch(0.439 0 0)` |
 
-Source: `https://ui.shadcn.com/docs/theming` — default Neutral base color values.
-
 ---
 
 ## Tailwind CSS v4 Configuration
-
-Source: `https://tailwindcss.com/docs/theme`
 
 ### The @theme Directive
 
@@ -254,8 +248,6 @@ This creates utility classes (`bg-mint-500`, `text-mint-500`) and a CSS variable
 
 ## Radix UI Primitives
 
-Source: `https://www.radix-ui.com/primitives/docs/overview/getting-started`
-
 ```bash
 npm install radix-ui@latest
 ```
@@ -294,8 +286,6 @@ shadCN adds: Tailwind CSS classes, CSS variable references for theming, composit
 ---
 
 ## Breakpoints
-
-Source: shadCN breakpoint documentation
 
 ### Breakpoint Scale
 
@@ -382,6 +372,21 @@ After initialization, your CSS file contains:
 | Primitives are unstyled | Must add all visual styling | shadCN provides styling layer |
 | Compound component pattern required | Cannot use flat API | Follow `Root > Trigger > Content` |
 
+### Design Tool Library (shadCN)
+
+Reference: `https://ui.shadcn.com/`
+
+| Feature | Description |
+|---------|-------------|
+| Component coverage | All shadCN/ui components, pixel-perfect to code |
+| Variable-based theming | design variables for color, spacing, type, and radii |
+| Light/dark mode | Built-in support via variable modes |
+| Design-code parity | Components map cleanly to shadCN React components |
+
+Design tool library link: (design tool reference)
+
+Note: shadCN is a third-party design tool kit, not an official shadCN product.
+
 ---
 
 ## References
@@ -391,3 +396,4 @@ After initialization, your CSS file contains:
 | shadCN UI | `https://ui.shadcn.com` | Theming, CSS variable convention |
 | Tailwind CSS | `https://tailwindcss.com` | @theme directive, design tokens, utility classes |
 | Radix UI | `https://www.radix-ui.com` | Accessible primitives, component architecture |
+| shadCN | `https://ui.shadcn.com` | Design tool component library |

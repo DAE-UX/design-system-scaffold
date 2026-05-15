@@ -38,8 +38,6 @@ A control that allows the user to toggle between checked and unchecked states.
 - Don't use for immediate-effect toggles (light/dark mode) — use switch
 - Don't label a checkbox as optional
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -274,7 +272,9 @@ const [checked, setChecked] = React.useState(false)
 
 ### Component Structure
 
-Checkbox has three layout types and a raw toggle sub-component:
+Component organizes Checkbox into three sections: Checkbox variants, Checkbox Group, and Checkbox Toggle (the raw toggle sub-component).
+
+Checkbox variants:
 
 | Variant Property | Values |
 |-----------------|--------|
@@ -284,24 +284,37 @@ Checkbox has three layout types and a raw toggle sub-component:
 | Orientation | Left, Right |
 | Checked | True, False |
 
-Checkbox Group: Disabled (False/True), Error (False/True)
+Total: 3 types × 2 disabled × 2 destructive × 2 orientation × 2 checked = 48 variant combinations.
 
-Checkbox Toggle states: Checked (False/Intermediate/True), State (Enabled/Focus)
+Checkbox Group:
 
-Unchecked layout: 16×16 rounded rect with border and background fill, shadow
-Checked layout: 16×16 rounded rect with primary fill + check icon (14×14, white)
+| Variant Property | Values |
+|-----------------|--------|
+| Disabled | False, True |
+| Error | False, True |
+
+Checkbox Toggle (raw toggle sub-component):
+
+| Variant Property | Values |
+|-----------------|--------|
+| Checked | False, Intermediate, True |
+| State | Enabled, Focus |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--primary` | `--primary` | Checked state background |
 | `--background` | `--background` | Unchecked state background |
 | `--input` | `--input` | Unchecked state border |
-| `size-4` (16px) | `size-4` | Toggle size |
-| `shadow-2xs` | `shadow-2xs` | Toggle shadow |
+| `height` | `height` | Toggle height |
+| `width` | `width` | Toggle width |
+| `border-width` | `border-width` | Border width (unchecked) |
+| `box-shadow` | `box-shadow` | Toggle shadow color |
+| `box-shadow` | `box-shadow offset-y` | Shadow vertical offset |
+| `box-shadow` | `box-shadow blur` | Shadow blur radius |
 
 ### Theme Behavior
 

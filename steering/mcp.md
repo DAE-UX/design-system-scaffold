@@ -1,4 +1,4 @@
-# MCP Server Setup — Design System Skill
+# MCP Server Setup
 
 > **TL;DR:** Optional MCP server connections that enhance agent capabilities when using this skill. shadCN MCP enables component browsing, searching, and installation via natural language. GitHub MCP enables repository operations (commits, PRs, branch management). Both are optional — the skill works without them — but they are recommended for workflows like Storybook generation and theme creation.
 
@@ -28,8 +28,6 @@ If an MCP connection is unavailable, the agent will notify you and proceed using
 ## Configure shadCN MCP Server
 
 The shadCN MCP server allows agents to browse, search, and install components from shadcn-compatible registries.
-
-Source: `https://ui.shadcn.com/docs/mcp`
 
 ### Prerequisites
 
@@ -90,6 +88,14 @@ Source: `https://ui.shadcn.com/docs/mcp`
 }
 ```
 
+**Codex** — add to `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.shadcn]
+command = "npx"
+args = ["shadcn@latest", "mcp"]
+```
+
 After adding the configuration, restart your IDE or reconnect the MCP server.
 
 ---
@@ -97,8 +103,6 @@ After adding the configuration, restart your IDE or reconnect the MCP server.
 ## Configure GitHub MCP Server
 
 The GitHub MCP server allows agents to interact with GitHub repositories — commits, branches, pull requests, and file operations.
-
-Source: `https://www.npmjs.com/package/@modelcontextprotocol/server-github`
 
 ### Prerequisites
 

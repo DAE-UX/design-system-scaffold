@@ -147,29 +147,24 @@ No CSS variable dependencies. Spinner inherits the current `color` from its pare
 
 ### Component Structure
 
-Component is organized into a variant matrix:
+Component organizes Spinner into a variant matrix:
 
 | Variant Property | Values |
 |-----------------|--------|
 | Rotation | 0, 90, 180, 270 |
 | Size | 3, 4, 5, 6, 8 |
 
-- Spinner → Lucide Icons / loader-circle (single icon layer)
-- Rotation variants represent static snapshots of the spin animation at 0°, 90°, 180°, 270°
-- Size variants map to Tailwind size tokens: 3 (12px), 4 (16px), 5 (20px), 6 (24px), 8 (32px)
-- No color tokens applied — icon inherits `currentColor` from parent context
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `size-4` (16px) | `width` / `height` | Default spinner size |
-| `size-3` (12px) | `width` / `height` | Small spinner size |
-| `size-5` (20px) | `width` / `height` | Medium spinner size |
-| `size-6` (24px) | `width` / `height` | Large spinner size |
-| `size-8` (32px) | `width` / `height` | Extra-large spinner size |
+|-------------|-------------|---------|
+| `width` | `width` / `height` | Default spinner size (Size=4) |
+| `width` | `width` / `height` | Small spinner size (Size=3) |
+| `width` | `width` / `height` | Medium spinner size (Size=5) |
+| `width` | `width` / `height` | Large spinner size (Size=6) |
+| `width` | `width` / `height` | Extra-large spinner size (Size=8) |
 
 No color variables — Spinner inherits `currentColor`. No spacing or typography tokens beyond sizing.
 

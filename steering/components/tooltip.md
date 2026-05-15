@@ -266,32 +266,34 @@ Focus on the trigger element opens the tooltip. Moving focus away closes it.
 
 ### Component Structure
 
-Component is organized into caret position variants:
+Component organizes Tooltip into caret position variants:
 
 | Variant Property | Values |
 |-----------------|--------|
 | Caret position | Top, Bottom, Right, Left |
 
-- Content container: foreground bg, rounded, px 12px, py 6px, inline-flex centered
-- Label text: background color, text-xs, font-normal, leading-4
-- Caret: foreground bg, 10×10 square rotated 45°, rounded 2px, positioned at center of the relevant edge
-- Optional Kbd sub-component: semi-transparent bg, rounded, min-w 20px, h 20px, text-xs, font-medium
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--foreground` | `--foreground` | Tooltip background (inverted) |
-| `--background` | `--background` | Tooltip text color (inverted) |
+|-------------|-------------|---------|
+| `--primary` | `--foreground` | Tooltip background |
+| `--primary-foreground` | `--background` | Tooltip text color |
+| `opacity` | `opacity` | Kbd background |
+| `--background` | `--background` | Kbd text color |
+| `padding` | `padding-inline` | Content horizontal padding |
+| `padding` (1.5 units) | `padding-block` | Content vertical padding |
+| `padding` | `gap` | Gap between label and Kbd |
+| `padding` | `padding` | Kbd internal padding |
 | `--radius` (derived) | `border-radius` | Content border radius |
-| `px-3` (12px) | `padding-inline` | Content horizontal padding |
-| `py-1.5` (6px) | `padding-block` | Content vertical padding |
-| `size-2.5` (10px) | `size` | Caret size |
-| `font-sans` | `--font-sans` | Font family |
-| `text-xs` (12px) | `font-size` | Text size |
+| `--radius` (derived) | `border-radius` | Kbd border radius |
+| `width` | `size` | Caret wrapper size |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-weight` | Label font weight |
+| `font-medium` | `font-weight` | Kbd font weight |
+| `leading-4` | `line-height` | Label line height |
+| `--text-xs` | `font-size` | Text size (label and Kbd) |
 
 ### Theme Behavior
 

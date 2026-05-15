@@ -386,7 +386,7 @@ Radix UI NavigationMenu provides built-in `navigation` role on the root element.
 
 ### Component Structure
 
-Component is organized into multiple sub-components:
+Component organizes Navigation Menu into multiple sub-components:
 
 Navigation Menu (composite):
 - Single variant showing a horizontal row of 5 navigation items
@@ -412,25 +412,22 @@ Navigation Menu / Navigation Menu Popover:
 
 .Navigation Menu Base / Poster — single variant (featured content card, 188×250)
 
-- Container: flex with gap 4px
-- Each item: h 36px, px 16px, py 8px, rounded
-- Text: foreground, text-sm, font-medium
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--foreground` | `--foreground` | Item text color |
-| `--radius` (derived) | `--radius` | Item border radius |
-| `px-4` (16px) | `padding-inline` | Item horizontal padding |
-| `py-2` (8px) | `padding-block` | Item vertical padding |
-| `gap-1` (4px) | `gap` | Gap between items |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Item font weight |
-| `text-sm` (14px) | `font-size` | Item text size |
+| `--radius` (derived) | `--radius` (derived) | Item border radius |
+| `padding` | `padding-inline` | Item horizontal padding |
+| `padding` | `padding-block` | Item vertical padding |
+| `padding` | `gap` | Gap between items |
+| `padding` | `padding` | Container padding |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Item font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Item text size |
 
 ### Theme Behavior
 

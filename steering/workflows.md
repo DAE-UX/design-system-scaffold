@@ -1,6 +1,6 @@
-# Skill Workflows — Design System Skill
+# Skill Workflows
 
-> **TL;DR:** Agent-executable workflows that users of the skill can trigger by request. Each workflow provides step-by-step instructions for the agent to follow in the target project. Current workflows: Generate a New Theme (theme discovery, base theme selection, boilerplate with all tokens, guided or bulk population, New York defaults for unspecified values, dual-format oklch+hex, Storybook alignment), Generate a Storybook (theme discovery, dynamic toolbar population).
+> **TL;DR:** Agent-executable workflows that users of the skill can trigger by request. Each workflow provides step-by-step instructions for the agent to follow in the target project. Current workflows: Generate a New Theme (theme discovery, base theme selection, boilerplate with all tokens, guided or bulk population, New York defaults for unspecified values, dual-format oklch+hex, Storybook alignment), Generate a Storybook (theme discovery, dynamic toolbar population), Heuristic Review (three-tier design review for prototypes — binary checks, signal detection, structural proxies, scoped to components present, incremental re-runs).
 
 ## Purpose
 
@@ -30,7 +30,7 @@ Before generating a theme, the agent discovers all available themes:
 | Project themes | Project's `themes/` folder | Override |
 
 Discovery order:
-1. Read built-in themes from the skill (Default)
+1. Read built-in themes from the power (Default theme is always available)
 2. Scan the project for a `themes/` directory
 3. Merge — project themes take precedence if names collide with built-in themes
 
@@ -183,3 +183,32 @@ If MCP connections are not available, the agent can still generate all story fil
 - Story files for all installed components, patterns, and templates
 - Accessibility addon enabled
 - Storybook running at `localhost:6006`
+
+---
+
+## Workflow: Heuristic Review
+
+**Trigger:** User says "review my prototype", "run a design review", "run a heuristic review", or similar. User-triggered only — not automatic after prototype generation.
+
+**Prerequisites:**
+- Prototype files exist in the project
+- `design-guidelines.md` and `heuristic-checks.md` are available (loaded from the skill)
+
+### Steps
+
+1. Load `guidelines/design/heuristic-checks.md`
+2. Execute Phase 1 (Scope): scan prototype files, build component inventory, filter checks by scope, report inventory and filtered check count to user
+3. Execute Phase 2 (High-tier): run all applicable binary checks, record pass/fail with code locations
+4. Execute Phase 3 (Medium-tier): run all applicable signal checks, perform follow-up on fired signals, present findings as a batch for user review
+5. Execute Phase 4 (Low-tier): run all applicable proxy checks, form observations, cap at 20 (ask user if they want more)
+6. Execute Phase 5 (Report): present summary in chat, offer detailed report file
+7. Execute Phase 6 (Post-review): log decisions to `heuristic-review-decisions-{user_name}.md`, offer to submit issue to YOUR-ORG/YOUR-REPO, offer to fix High-tier failures
+
+For incremental re-runs: detect prior decision file, diff changed files, re-run only affected checks, carry forward unresolved findings with reminder prompt. See `heuristic-checks.md` → Incremental Re-Runs for full procedure.
+
+### Output
+
+- Chat summary of findings by tier
+- Optional: detailed report file in project root
+- Decision file: `heuristic-review-decisions-{user_name}.md` (gitignored)
+- Optional: GitHub Issue submitted to YOUR-ORG/YOUR-REPO

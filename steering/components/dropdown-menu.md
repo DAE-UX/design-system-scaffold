@@ -44,8 +44,6 @@ A menu triggered by clicking a button, built on Radix UI Dropdown Menu primitive
 - Don't change labels of selectable items based on selected state
 - Don't overwhelm users with too many menu items
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -546,7 +544,12 @@ Sources: shadCN, Radix UI
 
 ### Component Structure
 
-**Dropdown Menu Item** — 4 variant properties:
+The component contains:
+
+**Dropdown Menu** (composed):
+- Full dropdown menu with grouped items, separators, and shortcuts
+
+**.Dropdown Menu Item** — 4 variant properties:
 
 | Variant Property | Values |
 |-----------------|--------|
@@ -554,22 +557,33 @@ Sources: shadCN, Radix UI
 | Variant | Default, Checked, Radio, Icon, Item |
 | SubTrigger | False, True |
 
-Item layout: flex row (px 8px, py 6px, gap 10px, rounded) → Label text (text-sm) + optional Shortcut text (text-sm, muted-foreground)
+Total: 18 variant combinations shown
 
-**Dropdown Menu Trigger** — States: Enabled, Hover, Active
+**.Dropdown Menu Profile Summary** — profile avatar + name summary row
+**.Dropdown Menu Title** — group heading label
+
+**Dropdown Menu Trigger** — 1 variant property:
+
+| Variant Property | Values |
+|-----------------|--------|
+| State | Enabled, Hover, Active |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--popover-foreground)` | `--popover-foreground` | Item label text color |
 | `var(--muted-foreground)` | `--muted-foreground` | Shortcut text color |
-| `rounded-sm` (derived) | `rounded-sm` | Item border radius |
-| `px-2` (8px) | `px-2` | Item horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `text-sm` | Item text size |
+| `--radius` (derived) | `rounded-sm` (derived) | Item border radius |
+| `padding` (2 units) | `px-2` | Item horizontal padding |
+| `padding` (2.5 units) | `gap-2.5` | Gap between label and shortcut |
+| `padding` (1.5 units) | `py-1.5` | Item vertical padding |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-normal` | Item text weight |
+| `text-sm` | `text-sm` | Item text size |
+| `leading-5` | `leading-5` | Item text line height |
 
 ### Theme Behavior
 

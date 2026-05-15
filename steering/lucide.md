@@ -1,4 +1,4 @@
-# Lucide Icons — Design System Skill
+# Lucide Icons
 
 > **TL;DR:** Lucide React (`lucide-react`) is the icon library for this design system. It is shadCN's default icon library — configured via `iconLibrary: "lucide"` in `components.json`. Icons are tree-shakable React components that render inline SVGs. Use `currentColor` for theme-aware coloring (inherits from parent text color via CSS variables). Icons are decorative by default (`aria-hidden="true"`); add `aria-label` or `<title>` only when an icon conveys essential meaning on its own. See the Icon Semantics Map (TODO) for consistent icon-to-function mapping across the system.
 
@@ -19,8 +19,6 @@ npm install lucide-react
 ```
 
 shadCN projects already include `lucide-react` when initialized with `iconLibrary: "lucide"` in `components.json`.
-
-Source: `https://lucide.dev/guide/packages/lucide-react`
 
 ---
 

@@ -38,8 +38,6 @@ A toggle control for switching between on and off states.
 - Don't use to toggle groups containing other toggles
 - Don't hide the label in read-only state
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -263,7 +261,7 @@ const [enabled, setEnabled] = useState(false)
 
 ### Component Structure
 
-Component is organized into two sub-components with variant matrices:
+Component organizes Switch into two sub-components with variant matrices:
 
 **Switch (composite)**
 
@@ -281,31 +279,25 @@ Component is organized into two sub-components with variant matrices:
 | Toggled | True, False |
 | State | Default, Hover, Focus, Disabled |
 
-- Switch → Label area (text) + Toggle sub-component
-- Toggle → Track (`rounded-full`, `w-9` 36px, `h-5` 20px) + Thumb (circle, 16×16, `rounded-full`)
-- Toggled=True: Track uses `bg-primary`, Thumb translated to right
-- Toggled=False: Track uses `bg-input`, Thumb at left position
-- Track has `shadow-2xs`, `p-0.5` (2px) internal padding for thumb inset
-- Card type wraps the switch in a bordered card container
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--primary` | `--primary` | Checked track background |
 | `--input` | `--input` | Unchecked track background |
 | `--background` | `--background` | Thumb background |
 | `--foreground` | `--foreground` | Label text color |
 | `--muted-foreground` | `--muted-foreground` | Description text color (Card type) |
 | `--border` | `--border` | Card type border |
-| `w-9` (36px) | `width` | Track width |
-| `h-5` (20px) | `height` | Track height |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Label font weight |
-| `text-sm` (14px) | `font-size` | Label text size |
+| `width` | `width` | Track width |
+| `height` | `height` | Track height |
+| `padding` (0.5 units) | `padding` | Track internal padding (thumb inset) |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Label font weight |
+| `font-normal` | `font-weight` | Description font weight |
+| `--text-sm` | `font-size` | Label text size |
 
 ### Theme Behavior
 

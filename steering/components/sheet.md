@@ -414,7 +414,7 @@ Focus is trapped within the sheet while open. Focus returns to the trigger eleme
 
 ### Component Structure
 
-Component is organized into orientation variants and sub-components:
+Component organizes Sheet into orientation variants and sub-components:
 
 Sheet:
 | Variant Property | Values |
@@ -428,28 +428,32 @@ Sheet:
 
 .Sheet Example Content (sub-component — no variant properties, placeholder)
 
-- Header uses gap 6px between title and description
-- Footer uses gap 8px between buttons, mt-auto
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--background` | `--background` | Sheet panel background |
-| `--foreground` | `--foreground` | Title text color |
+| `--card-foreground` | `--card-foreground` | Title text color |
 | `--muted-foreground` | `--muted-foreground` | Description text color |
+| `--foreground` | `--foreground` | Outline button text color |
 | `--primary` | `--primary` | Primary button background |
-| `--border` | `--border` | Panel edge border |
-| `--radius` | `--radius` | Border radius |
-| `p-6` (24px) | `padding` | Panel padding |
-| `gap-1.5` (6px) | `gap` | Header title/description gap |
-| `gap-2` (8px) | `gap` | Footer button gap |
-| `font-sans` | `--font-sans` | Font family |
-| `font-semibold` (600) | `font-weight` | Title font weight |
-| `text-lg` (18px) | `font-size` | Title text size |
-| `text-sm` (14px) | `font-size` | Description and button text size |
+| `--primary-foreground` | `--primary-foreground` | Primary button text color |
+| `--input` | `--input` | Outline button border |
+| `--border` | `--border` | Content placeholder border |
+| `opacity` | `opacity` | Close button opacity |
+| `padding` | `padding` / `gap` | Panel padding and content gap |
+| `padding` (1.5 units) | `gap` | Header title/description gap |
+| `padding` | `gap` | Footer button gap |
+| `--radius` | `--radius` | Content placeholder border radius |
+| `--radius` (derived) | `border-radius` (derived) | Button border radius |
+| `--text-lg` | `font-size` | Title text size |
+| `--text-sm` | `font-size` | Description and button text size |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-semibold` | `font-weight` | Title font weight |
+| `font-medium` | `font-weight` | Button font weight |
+| `box-shadow` | `box-shadow` | Button shadow |
 
 ### Theme Behavior
 

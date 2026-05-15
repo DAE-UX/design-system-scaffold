@@ -3,32 +3,33 @@
 ## Metadata
 
 - **Name:** Login Template
-- **Source:** shadCN
+- **Source:** shadCN (`https://ui.shadcn.com/`)
 - **Category:** Template (layout blueprint)
 - **Uses:** Card, Field, Input, Button, Label, Separator
+- **Design reference:** (see component documentation)
 
 ## Layout Structure
 
 Centered authentication page with a single Card containing the login form. The page fills the viewport height and centers the form both horizontally and vertically. The Card is constrained to a max width for readability.
 
-```
+```text
 +--------------------------------------------------+
-|                                                  |
-|              +------------------+                |
-|              |  Card            |                |
-|              |  CardHeader      |                |
-|              |  Title           |                |
-|              |  Description     |                |
-|              |  +--------------+|                |
-|              |  | CardContent  ||                |
-|              |  | Email        ||                |
-|              |  | Password     ||                |
-|              |  | [Login]      ||                |
-|              |  | [Social]     ||                |
-|              |  | Sign up link ||                |
-|              |  +--------------+|                |
-|              +------------------+                |
-|                                                  |
+| |
+| +------------------+                |
+| | Card            | |
+| | CardHeader      | |
+| | Title           | |
+| | Description     | |
+| | +--------------+| |
+| | | CardContent  || |
+| | | Email        || |
+| | | Password     || |
+| | | [Login]      || |
+| | | [Social]     || |
+| | | Sign up link || |
+| | +--------------+| |
+| +------------------+                |
+| |
 +--------------------------------------------------+
 ```
 
@@ -49,11 +50,11 @@ Centered authentication page with a single Card containing the login form. The p
 | Desktop (md+) | Card centered in viewport with `p-10` page padding. Form width constrained by `max-w-sm`. |
 | Mobile (<md) | Card centered with `p-6` page padding. Form fills available width within max-width constraint. Card maintains its structure. |
 
-## Component Reference
+## Design Reference
 
-### Layout Variants
+### Component Structure
 
-5 login layout variants:
+The design page contains 5 login layout variants:
 
 | Variant | Description |
 |---------|-------------|

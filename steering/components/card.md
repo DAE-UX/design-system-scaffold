@@ -33,8 +33,6 @@ A container for grouping related content and actions. Provides visual separation
 - Don't use cards in hero sections
 - Don't default to cards for layout — prefer sections, columns, dividers, lists, and media blocks
 
-Sources: shadCN, Radix UI, UI Guidelines
-
 ## API
 
 ### Parts
@@ -324,34 +322,50 @@ No keyboard interaction — Card is a static container. Interactive elements ins
 
 ### Component Structure
 
-Card is organized into a base component, sub-components, and example compositions:
+Component organizes Card into a base component, sub-components, and example compositions:
 
-Base component: Card → Card Header (optional) + Content area + Card Footer (optional)
+Base component (Card):
+- Card → Card Header (optional) + Content area + Card Footer (optional)
+- Card Header and Card Footer are separate sub-components with their own variant matrices
 
 | Sub-Component | Variant Property | Values |
 |--------------|-----------------|--------|
-| Card Header | Alignment | Left, Center |
+| Card Header | Alignment | Left ←, Center |
 | Card Header | Size | Large, Medium, Small |
-| Card Footer | Type | Button left, Button right, Two buttons, Full width button, Calendar, Pagination |
+| Card Footer | Type | Button left, Button right, Two buttons, Two buttons – right, Full width button, Two full width buttons, Calendar, Button cloud, Event slots, Pagination |
 | Card Footer | Stacked | True, False |
+
+Card sub-components (content patterns): Authentication Card Content, Revenue Card Content, Subscription Card Content, Fitness Card Content, Subscription Form Card Content, Create An Account Card Content, Exercise Minutes Card Content, Chat Card Content, Payments Card Content, Team Members Card Content, Cookie Settings Card Content, Report An Issue Card Content, Share This Document Card Content.
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--card` | `--card` | Card background |
 | `--card-foreground` | `--card-foreground` | Card title text color |
 | `--border` | `--border` | Card border |
 | `--muted-foreground` | `--muted-foreground` | Card description text color |
+| `--background` | `--background` | Placeholder/content area background |
 | `--radius` | `--radius` | Card border radius |
-| `p-6` | `padding` | Header/footer/content padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Title font weight (medium size) |
-| `font-semibold` (600) | `font-weight` | Title font weight (large size) |
-| `text-sm` | `font-size` | Description font size |
-| `shadow-sm` | `box-shadow` | Card shadow |
+| `border-width` | `border-width` | Border width |
+| `padding` | `padding` | Header/footer/content padding |
+| `padding` | `gap` | Header internal gap (title area to action) |
+| `padding` | `gap` | Footer buttons gap |
+| `padding` (1.5 units) | `gap` | Title-to-description gap |
+| `padding` | `gap` | Footer internal gap |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Title font weight (medium size) |
+| `font-semibold` | `font-weight` | Title font weight (large size) |
+| `font-normal` | `font-weight` | Description font weight |
+| `--text-base` | `font-size` | Title font size (medium) |
+| `--text-lg` | `font-size` | Title font size (large) |
+| `--text-sm` | `font-size` | Description font size |
+| `leading-5` | `line-height` | Description line height |
+| `box-shadow` | `box-shadow` | Card shadow color (2-layer) |
+| `box-shadow` | `box-shadow blur` | Shadow layer 1 blur |
+| `box-shadow` | `box-shadow blur` | Shadow layer 2 blur |
 
 ### Theme Behavior
 

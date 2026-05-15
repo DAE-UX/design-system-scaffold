@@ -35,8 +35,6 @@ An interactive component that expands and collapses a panel of content.
 - Don't use for multiple collapsible sections — use accordion instead.
 - Don't hide critical information inside a collapsible.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -266,29 +264,35 @@ Collapsible itself has no CSS variable dependencies. It is an unstyled primitive
 
 ### Component Structure
 
+The component contains:
+
+**Collapsible** — 1 variant property:
+
 | Variant Property | Values |
 |-----------------|--------|
 | Open | False, True |
 
-Closed layout: flex column (gap 8px, width 350px) → Trigger row + CollapsibleItem(s)
-Trigger: flex row (gap 16px, px 16px) → Title text (text-sm, font-semibold) + Toggle button (36×36px, chevrons-up-down icon)
-Item: flex row (border, rounded, px 16px, py 12px) → Label text (text-sm)
-Open state shows trigger + multiple CollapsibleItem children.
+**.Collapsible Item**:
+- Item → flex row (`border: 1px solid var(--input)`, `rounded: var(--radius)`, `px-4`, `py-3`) → Label text (`text-sm`, `text-foreground`, monospace font)
+
+Open=True shows the trigger + multiple CollapsibleItem children.
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--foreground)` | `--foreground` | Title and item text color |
 | `var(--input)` | `--input` | Item border color |
-| `--radius` (derived) | `--radius` | Item and button border radius |
-| `px-4` (16px) | `px-4` | Trigger padding, item horizontal padding |
-| `py-3` (12px) | `py-3` | Item vertical padding |
-| `font-sans` | `--font-sans` | Title font family |
-| `font-semibold` (600) | `font-semibold` | Title font weight |
-| `text-sm` (14px) | `text-sm` | Text size |
+| `--radius` (derived) | `--radius` (derived) | Item and button border radius |
+| `padding` (4 units) | `px-4` / `gap-4` | Trigger padding, trigger gap, item horizontal padding |
+| `padding` (3 units) | `py-3` | Item vertical padding |
+| `padding` (2 units) | `gap-2` | Collapsible vertical gap |
+| `--font-sans` | `--font-sans` | Title font family |
+| `font-semibold` | `font-semibold` | Title font weight |
+| `text-sm` | `text-sm` | Title and item text size |
+| `leading-5` | `leading-5` | Text line height |
 
 ### Theme Behavior
 

@@ -653,7 +653,7 @@ Not directly applicable — Sidebar uses Radix Slot for composition but does not
 
 ### Component Structure
 
-Component is organized into numerous sub-components and assembled examples:
+Component organizes Sidebar into numerous sub-components and assembled examples:
 
 Sub-components:
 - .Sidebar Menu Button: State (Enabled/Hover/Active/Focus) × Type (Simple/Large icon) × Collapsed (True/False)
@@ -676,27 +676,31 @@ Sub-components:
 
 Assembled examples: Sidebar 1 through Sidebar 14 (various compositions), Sidebar 7 includes Collapsed=True/False variants.
 
-- Menu items use gap 8px between icon and label
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--sidebar` | `--sidebar` | Sidebar background |
 | `--sidebar-foreground` | `--sidebar-foreground` | Sidebar text color |
 | `--sidebar-primary` | `--sidebar-primary` | Media asset icon background |
-| `--input` | `--input` | Input border and background (at 30% opacity) |
+| `--input (30% opacity)` | `--input` (at 30% opacity) | Input background |
+| `--input` | `--input` | Input border |
 | `--muted-foreground` | `--muted-foreground` | Input placeholder text |
-| `--radius` (derived) | `--radius` | Item and input border radius |
-| `p-2` (8px) | `padding` / `gap` | Section padding, item padding |
-| `px-3` (12px) | `padding-inline` | Input horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-semibold` (600) | `font-weight` | Header title font weight |
-| `text-xs` (12px) | `font-size` | Group label text size |
-| `text-sm` (14px) | `font-size` | Menu item text size |
-| `shadow-xs` | `box-shadow` | Input shadow |
+| `padding` | `padding` / `gap` | Section padding, item padding, icon-label gap |
+| `padding` | `padding-inline` | Input horizontal padding |
+| `--radius` (derived) | `border-radius` (derived) | Item and input border radius |
+| `--radius` | `--radius` | Media asset icon border radius |
+| `--text-xs` | `font-size` | Group label text size |
+| `--text-sm` | `font-size` | Menu item text size |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-semibold` | `font-weight` | Header title font weight |
+| `font-medium` | `font-weight` | Group label font weight |
+| `font-normal` | `font-weight` | Menu item font weight |
+| `leading-4` | `line-height` | Group label and subtitle line height |
+| `box-shadow` | `box-shadow` | Input shadow |
+| `border-width` | `border-width` | Input border width |
 
 ### Theme Behavior
 

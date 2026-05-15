@@ -37,8 +37,6 @@ A two-state button that can be toggled between on (pressed) and off (not pressed
 - Don't use for options requiring descriptions of both states
 - Don't use in forms
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -292,7 +290,7 @@ const [bold, setBold] = useState(false)
 
 ### Component Structure
 
-Component is organized into a variant matrix:
+Component organizes Toggle into a variant matrix:
 
 | Variant Property | Values |
 |-----------------|--------|
@@ -301,31 +299,27 @@ Component is organized into a variant matrix:
 | Pressed | False, True |
 | Size | Default, Small, Large |
 
-- Toggle → Icon (Lucide icon, 16×16) + Label text (optional)
-- Container: h 36px, rounded, px 8px, py 10px, gap 8px, inline-flex centered
-- Label text: foreground, text-sm, font-medium
-- Outlined=True adds border, shadow-xs
-- Pressed=True uses accent background color
-- Size=Small: h 28px, Size=Large: h 40px
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--foreground` | `--foreground` | Label text color |
 | `--muted` | `--muted` | Hover background |
 | `--muted-foreground` | `--muted-foreground` | Hover text color |
 | `--accent` | `--accent` | Pressed background |
 | `--accent-foreground` | `--accent-foreground` | Pressed text color |
 | `--input` | `--input` | Outlined variant border |
-| `h-9` (36px) | `height` | Default size height |
+| `height` | `height` | Default size height |
+| `padding` | `padding` | Horizontal padding (default) |
+| `padding` (2.5 units) | `padding` | Vertical padding |
+| `padding` | `gap` | Gap between icon and label |
 | `--radius` (derived) | `border-radius` | Border radius |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-weight` | Label font weight |
-| `text-sm` (14px) | `font-size` | Label text size |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Label font weight |
+| `leading-5` | `line-height` | Text line height |
+| `--text-sm` | `font-size` | Label text size |
 
 ### Theme Behavior
 

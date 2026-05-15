@@ -213,7 +213,7 @@ Radix UI ScrollArea provides built-in `scrollbar` role on the scrollbar elements
 
 ### Component Structure
 
-Scroll Area is a React-specific component. No design tool variant matrix applies.
+The component page contains an informational Alert instance (no variant matrix). The page indicates Scroll Area is a React-specific component not represented as a design component with variants.
 
 Page content:
 - Single Alert component (Type=Default) with icon (triangle-alert) + title ("React-specific component") + description ("This component is not here as it's only used in React.")
@@ -221,7 +221,7 @@ Page content:
 
 ### CSS Variable Mapping
 
-No component-specific design tokens. CSS variable mappings are derived from the code implementation (see CSS Variable Dependencies above).
+The component page contains only an informational Alert — no Scroll Area design tokens are present. CSS variable mappings are derived from the code implementation (see CSS Variable Dependencies above).
 
 ### Theme Behavior
 

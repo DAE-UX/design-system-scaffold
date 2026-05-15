@@ -1,12 +1,12 @@
-# Design System Library — Design System Skill
+# Design System Library
 
-> **TL;DR:** Parent record for the three-tier design system: 57 components (atomic building blocks), patterns (functional compositions), and templates (layout blueprints). Defines global conventions (theming, design tool workflow, validation, variable tracking) that apply across all tiers. Individual files contain only tier-specific content. Use the indexes below to navigate.
+> **TL;DR:** Parent record for the three-tier design system: 57 components (atomic building blocks), patterns (functional compositions), and templates (layout blueprints). Defines global conventions (theming, validation, variable tracking) that apply across all tiers. Individual files contain only tier-specific content. Use the indexes below to navigate.
 
 ## Purpose
 
 System-level documentation and index for the design system library. This file defines all global rules, conventions, and workflows that apply across components, patterns, and templates. Individual files contain only item-specific information.
 
-**Use for:** Understanding design system conventions, navigating to specific items, validating implementations, understanding the design tool workflow, determining which tier a new item belongs to.
+**Use for:** Understanding design system conventions, navigating to specific items, validating implementations, determining which tier a new item belongs to.
 
 **Do not use for:** Item-specific behavior, props, or styling — see the individual file.
 
@@ -14,12 +14,12 @@ System-level documentation and index for the design system library. This file de
 
 ## Three-Tier Structure
 
-```
-/src/design-system
+```text
+steering/
 ├── design-system.md       — This file (parent record + indexes)
-├── /components            — Atomic UI elements (57 files)
-├── /patterns              — Functional compositions
-└── /templates             — Layout blueprints
+├── components/            — Atomic UI elements (57 files)
+├── patterns/              — Functional compositions
+└── templates/             — Layout blueprints
 ```
 
 ### Folder Responsibilities
@@ -46,30 +46,29 @@ System-level documentation and index for the design system library. This file de
 | When to create a template | When a page-level layout structure is reused across multiple contexts |
 | Promotion rules | A component that grows to compose multiple sub-components may be promoted to a pattern. A pattern that becomes a full page layout may be promoted to a template. |
 | Naming | All files: lowercase, hyphen-separated `.md`. Components match shadCN names. Patterns and templates use descriptive names. |
-| Consistency | All items follow the same global conventions (theming, design tool workflow, variable tracking) defined in this file |
+| Consistency | All items follow the same global conventions (theming, variable tracking) defined in this file |
 
 ---
 
 ## Global Conventions
 
-### Design Tool Libraries
+### Design Tool Integration
 
-If you use a Figma-based design workflow, shadCN recommends several compatible component libraries. These provide 1:1 component parity with shadCN's code implementation, variable-based theming, and light/dark mode support.
+Components can be mapped to any Figma library that implements shadCN components. Recommended Figma libraries for shadCN (from the official shadCN documentation):
 
-**Free:**
-- [Obra shadcn/ui](https://www.figma.com/community/file/1514746685758799870/obra-shadcn-ui) by Obra Studio — MIT licensed, maintained by a team of designers, with a free design-to-code plugin
-- [shadcn/ui components](https://www.figma.com/community/file/1342715840824755935) by Sitsiilia Bergmann — Well-structured component library aligned with the shadCN component system
-- [shadcn/ui design system](https://www.figma.com/community/file/1203061493325953101) by Pietro Schirano — Design companion for shadcn/ui with pixel-perfect component matching
+- Official shadCN Figma kit (see `https://ui.shadcn.com/docs/figma`)
+- Any community Figma library that maps to shadCN component APIs
 
-**Paid:**
-- [shadcn/ui kit](https://shadcndesign.com/) by Matt Wierzbicki — Premium, always up-to-date UI kit optimized for design-to-dev handoff
-- [shadcncraft Design System](https://shadcncraft.com/) — Production-ready kit with Pro React blocks and 1:1 Figma alignment
-- [shadcn/studio UI Kit](https://shadcnstudio.com/figma) — Components, 550+ blocks, 10+ templates, 20+ themes, and AI design-to-code
-- [Shadcnblocks.com](https://www.shadcnblocks.com/) — Components, 500+ pro blocks, shadCN theme variables, light/dark mode
+Individual component files include a Component Structure section describing variant organization and a CSS Variable Mapping section for token-to-variable relationships.
 
-Source: `https://ui.shadcn.com/docs/figma`
+### Design Tool Workflow
 
-You don't need a Figma library to use this skill. The component specs, CSS variables, and theme definitions work independently of any design tool.
+1. Open your design tool library
+2. Navigate to the component page
+3. Use dev mode to inspect properties, spacing, and color tokens
+4. Map design tokens to shadCN/Tailwind CSS variables
+5. Document tokens not found in shadCN or Tailwind as special-case variables
+6. Hardcoded color values from design tools go to the theme file — the component file references only the variable name
 
 ### WCAG and Accessibility Reference
 
@@ -83,13 +82,13 @@ These rules apply to every component file:
 
 - Every component MUST support both light and dark modes
 - No hardcoded color values in component files — reference CSS variables only (e.g., `--foreground`, `--border`)
-- All resolved color/style values live in theme files (`themes/*.md`), not in component files
+- All resolved color/style values live in theme files, not in component files
 - All CSS variables tagged with source: `shadcn`, `tailwind`, or `special-case`
 - Design tokens in component files map to CSS variables, not raw color values
-- When a design tool inspection reveals a hardcoded value, that value goes to the theme file; the component file references only the variable name
+- When design tool inspection reveals a hardcoded value, that value goes to the theme file; the component file references only the variable name
 - Background behavior (transparent, inherited, or explicit) must be documented per component
 
-See: `themes/default.md`
+See: `default-theme.md`
 
 ### File Structure Convention
 
@@ -112,22 +111,7 @@ Every individual component file follows this structure:
 | HTML | Standalone HTML structure | Yes |
 | CSS (Raw CSS, Tailwind Mapping) | Component-specific styling | Yes |
 | CSS Variable Dependencies | Variables this component uses, with purpose and source | Yes |
-| Theme Support (Theme Behavior) | Light/dark behavior, variable resolution | Yes |
-
----
-
-## Design Tool Workflow
-
-If you use a Figma library (or another design tool) alongside this skill, follow this workflow to map design tokens to CSS variables:
-
-1. Open your design tool's component library
-2. Navigate to the component you're documenting
-3. Inspect properties, spacing, and color tokens in dev mode
-4. Map design tokens to shadCN/Tailwind CSS variables (see the component's CSS Variable Dependencies section)
-5. Document tokens not found in shadCN or Tailwind as special-case variables
-6. Hardcoded color values from the design tool go to the theme file — the component file references only the variable name
-
-This workflow is optional. The component specs in this skill are complete without a design tool — they include full CSS variable mappings, HTML structure, and Tailwind classes.
+| Theme Support (Component Structure, CSS Variable Mapping, Theme Behavior) | Structure, token → CSS variable mapping, light/dark behavior | Yes |
 
 ---
 
@@ -135,7 +119,7 @@ This workflow is optional. The component specs in this skill are complete withou
 
 Each component includes standalone HTML structure, raw CSS + Tailwind mapping, and CSS variable dependency list. To validate:
 
-1. Compare rendered output against the component spec (or your design tool reference if available)
+1. Compare rendered output against design reference
 2. Verify all CSS variables resolve to values in the active theme
 3. Confirm light/dark mode behavior matches documented differences
 4. Cross-reference CSS Variable Dependencies table against theme files
@@ -146,7 +130,7 @@ Each component includes standalone HTML structure, raw CSS + Tailwind mapping, a
 
 Each component lists all CSS variables it uses with their purpose and source. Cross-reference against theme files to ensure:
 
-- All referenced variables are defined in `default.md` (or your project's theme files)
+- All referenced variables are defined in `default-theme.md`
 - Variable sources are tagged correctly (`shadcn`, `tailwind`, `special-case`)
 - No undeclared variables exist in component files
 
@@ -154,7 +138,7 @@ Each component lists all CSS variables it uses with their purpose and source. Cr
 
 ## Component Index
 
-57 components sourced from the shadCN component registry.
+57 components sourced from the shadCN registry.
 
 | Component | File | Dependencies | Source |
 |-----------|------|-------------|--------|
@@ -211,7 +195,7 @@ Each component lists all CSS variables it uses with their purpose and source. Cr
 | Table | `components/table.md` | (none) | shadCN |
 | Tabs | `components/tabs.md` | radix-ui | shadCN (Radix UI primitive) |
 | Textarea | `components/textarea.md` | (none) | shadCN |
-| Toast | `components/toast.md` | (none) | shadCN |
+| Toast | `components/toast.md` | (none) | shadCN (general-purpose toast; see also Sonner) |
 | Toggle | `components/toggle.md` | radix-ui | shadCN (Radix UI primitive) |
 | Toggle Group | `components/toggle-group.md` | radix-ui | shadCN (Radix UI primitive) |
 | Tooltip | `components/tooltip.md` | radix-ui | shadCN (Radix UI primitive) |

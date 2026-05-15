@@ -40,8 +40,6 @@ A command menu for search and quick actions, built on the cmdk library by Dip.
 - Don't include too many items without grouping.
 - Don't omit the empty state message.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -451,33 +449,44 @@ React.useEffect(() => {
 
 ### Component Structure
 
-**Command** (composed): Full command palette with search field, grouped item lists, and optional "No results" state
+The component contains:
 
-**Command Search** — States: Default, Focus-empty, Focus-filled, Disabled
+**Command** (composed):
+- Full command palette with search field, grouped item lists, and optional "No results" state
 
-Command layout: flex column (border, rounded, shadow-md, overflow clip) → Search field + Item groups (separated by border-top)
-Search field: flex row (popover bg, border-bottom, px 12px, py 8px) → Search icon (16×16px) + Placeholder text (text-sm, muted-foreground)
-Item group: flex column (popover bg, p 4px, max-h 300px) → Group label (text-xs, muted-foreground) + Menu items
-Menu item: flex row (px 8px, py 6px, rounded) → Item text (text-sm)
-Active item: accent bg, accent-foreground text
+**Command Search** — 1 variant property:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Default, Focus-empty, Focus-filled, Disabled |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--popover)` | `--popover` | Search field and item list background |
 | `var(--popover-foreground)` | `--popover-foreground` | Item text color |
 | `var(--border)` | `--border` | Container border, group separator |
 | `var(--muted-foreground)` | `--muted-foreground` | Search placeholder, group label text |
 | `var(--accent)` | `--accent` | Active/hover item background |
 | `var(--accent-foreground)` | `--accent-foreground` | Active/hover item text |
-| `--radius` | `--radius` | Container border radius |
-| `px-3` (12px) | `px-3` | Search field horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `text-sm` | Item and search text size |
-| `shadow-md` | `shadow-md` | Container box shadow |
+| `var(--foreground)` | `--foreground` | "No results" text |
+| `var(--background)` | `--background` | "No results" background |
+| `var(--radius)` | `--radius` | Container border radius |
+| `--radius` (derived) | `rounded-sm` (derived) | Item border radius |
+| `padding` (3 units) | `px-3` | Search field horizontal padding |
+| `padding` (2 units) | `py-2` / `gap-2` / `px-2` | Search vertical padding, item horizontal padding |
+| `padding` (1.5 units) | `py-1.5` | Item vertical padding, label padding |
+| `padding` (1 units) | `p-1` | Item list padding |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-normal` | Item and search text weight |
+| `text-sm` | `text-sm` | Item and search text size |
+| `text-xs` | `text-xs` | Group label text size |
+| `leading-5` | `leading-5` | Item text line height |
+| `leading-4` | `leading-4` | Group label line height |
+| `shadow-md` | `shadow-md` | Container box shadow (2-layer) |
 
 ### Theme Behavior
 

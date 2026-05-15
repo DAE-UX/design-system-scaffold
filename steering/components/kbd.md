@@ -190,27 +190,37 @@ No keyboard interaction — Kbd is a presentational element.
 
 ### Component Structure
 
-Kbd styles: Default, Reversed
-Kbd Group types: Default, Separated
+Component organizes Kbd into two sub-components:
 
-Kbd layout: optional Left Icon (12×12) + Label text + optional Right Icon (12×12)
-Container: flex (gap 4px, h 20px, min-width 20px), muted bg, rounded, text-xs, font-medium, centered
+Kbd:
 
-Kbd Group (Default): inline flex with multiple Kbd children
-Kbd Group (Separated): Kbd children with visual separators
+| Variant Property | Values |
+|-----------------|--------|
+| Style | Default, Reversed |
+
+Kbd Group:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Default, Separated |
+
+Kbd Group (Type=Default): inline flex with multiple Kbd children
+Kbd Group (Type=Separated): Kbd children with visual separators
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--muted` | `--muted` | Kbd background |
 | `--muted-foreground` | `--muted-foreground` | Kbd text color |
-| `--radius` (derived) | `--radius` | Kbd border radius |
-| `h-5` (20px) | `height` | Kbd height |
-| `font-sans` | `--font-sans` | Font family |
-| `text-xs` (12px) | `font-size` | Text size |
+| `--radius` (derived) | `--radius` (derived) | Kbd border radius |
+| `height` | `height` | Kbd height |
+| `padding` | `padding` / `gap` | Internal padding and icon gap |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-weight` | Text font weight |
+| `--text-xs` | `font-size` | Text size |
 
 ### Theme Behavior
 

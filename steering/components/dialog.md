@@ -45,8 +45,6 @@ A modal window that overlays the page content, requiring user interaction before
 - Don't chain a sequence of modals
 - Don't put scrolling content in modals unless unavoidable
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -361,34 +359,49 @@ const [open, setOpen] = React.useState(false)
 
 ### Component Structure
 
-Dialog is organized into a base component, a close button sub-component, and example content:
+Component organizes Dialog into a base component, a close button sub-component, and example content:
 
-Base: Dialog → Card Header (optional, with close button) + Content area + Card Footer (optional, with action buttons)
+Base component (Dialog):
+- Dialog → Card Header (optional, with close button) + Content area + Card Footer (optional, with action buttons)
+- Uses Card Header and Card Footer sub-components from the Card component
 
-Dialog Close states: Enabled, Hover, Focus
+Dialog Close sub-component:
 
-Layout: Dialog container → Card Header (Title + Description + Close button) + Content + Card Footer (Cancel + Confirm buttons)
-Close button: cross icon (24×24) at 70% opacity, positioned top-right
-Content area: padding 32px vertical, 24px horizontal
-Footer: flex row, justify-end, gap 8px
+| Variant Property | Values |
+|-----------------|--------|
+| State | Enabled, Hover, Focus |
+
+Example content sub-component (.Dialog Example Content) provides a sample form layout.
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--background` | `--background` | Dialog background |
+|-------------|-------------|---------|
+| `--bg-input-30` | `--background` | Dialog background |
 | `--border` | `--border` | Dialog border |
 | `--card-foreground` | `--card-foreground` | Title text color |
 | `--muted-foreground` | `--muted-foreground` | Description text color |
 | `--radius` | `--radius` | Dialog border radius |
-| `p-6` (24px) | `padding` | Header/footer horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-semibold` (600) | `font-weight` | Title font weight |
-| `text-lg` (18px) | `font-size` | Title font size |
-| `text-sm` (14px) | `font-size` | Description font size |
-| `shadow-md` | `box-shadow` | Dialog shadow |
+| `border-width` | `border-width` | Border width |
+| `opacity` | `opacity` | Close button opacity |
+| `height` | `height` | Close button icon size |
+| `width` | `width` | Close button icon size |
+| `padding` | `padding` | Header/footer horizontal padding |
+| `padding` | `padding` | Content vertical padding |
+| `padding` | `gap` | Header internal gap |
+| `padding` | `gap` | Footer buttons gap |
+| `padding` (1.5 units) | `gap` | Title-to-description gap |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-semibold` | `font-weight` | Title font weight |
+| `font-normal` | `font-weight` | Description font weight |
+| `--text-lg` | `font-size` | Title font size |
+| `--text-sm` | `font-size` | Description font size |
+| `leading-5` | `line-height` | Description line height |
+| `box-shadow` | `box-shadow` | Dialog shadow color (2-layer) |
+| `box-shadow` | `box-shadow blur` | Shadow layer 1 blur |
+| `box-shadow` | `box-shadow blur` | Shadow layer 2 blur |
 
 ### Theme Behavior
 

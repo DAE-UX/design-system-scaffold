@@ -1,8 +1,9 @@
-# UI Guidelines — Design System Skill
+# UI Guidelines
 
 > **TL;DR:** Tactical rules for constructing UIs with design system components. Covers composition, landing pages, app surfaces, imagery, copy, motion, and litmus checks. Use when building screens, layouts, prototypes, or templates. These rules guide component usage and arrangement — they do NOT modify component specs, theme definitions, or design heuristics.
 
 **Dependency:** `guidelines/design/design-guidelines.md` (overarching heuristics), `guidelines/copywriting/glossary.md` (terminology), component specs (`design-system/components/*.md`), theme definitions (`themes/*.md`).
+
 
 ---
 

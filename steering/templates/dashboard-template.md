@@ -3,29 +3,30 @@
 ## Metadata
 
 - **Name:** Dashboard Template
-- **Source:** shadCN
+- **Source:** shadCN (`https://ui.shadcn.com/`)
 - **Category:** Template (layout blueprint)
 - **Uses:** Sidebar (component), Card, Chart, Table, Tabs, Select, Toggle Group, Badge, Separator
+- **Design reference:** (see component documentation)
 
 ## Layout Structure
 
 Full-page dashboard with sidebar navigation and a vertical content stack. The sidebar uses the inset variant with a custom width. The content area stacks vertically: site header, KPI summary cards, interactive chart, and data table.
 
-```
+```text
 +--------------------------------------------------+
 | SidebarProvider                                  |
 | +------------+-----------------------------------+
-| |  Sidebar   |  SidebarInset                     |
-| |  (inset)   |  +-------------------------------+|
-| |            |  | SiteHeader (trigger + title)   ||
-| |  Header    |  +-------------------------------+|
-| |  -----     |  | SectionCards (4 KPI cards)     ||
-| |  NavMain   |  +-------------------------------+|
-| |  NavDocs   |  | ChartAreaInteractive           ||
-| |  NavSecond |  | (AreaChart in Card)             ||
-| |  -----     |  +-------------------------------+|
-| |  Footer    |  | DataTable (Tabs + Table)       ||
-| |  (user)    |  |                                ||
+| | Sidebar   | SidebarInset                     |
+| | (inset)   | +-------------------------------+|
+| | | | SiteHeader (trigger + title)   ||
+| | Header    | +-------------------------------+|
+| | -----     | | SectionCards (4 KPI cards)     ||
+| | NavMain   | +-------------------------------+|
+| | NavDocs   | | ChartAreaInteractive           ||
+| | NavSecond | | (AreaChart in Card)             ||
+| | -----     | +-------------------------------+|
+| | Footer    | | DataTable (Tabs + Table)       ||
+| | (user)    | | ||
 | +------------+-----------------------------------+
 +--------------------------------------------------+
 ```
@@ -50,11 +51,11 @@ Full-page dashboard with sidebar navigation and a vertical content stack. The si
 
 The dashboard uses container queries (`@container/main`) for the content area, enabling responsive behavior independent of viewport width.
 
-## Component Reference
+## Design Reference
 
-### Layout Structure
+### Component Structure
 
-1 dashboard layout block:
+The design page contains 1 dashboard layout block:
 
 | Block | Description |
 |-------|-------------|

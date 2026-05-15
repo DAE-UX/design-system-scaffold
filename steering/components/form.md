@@ -36,8 +36,6 @@ An integration layer that connects React Hook Form to shadCN form UI components 
 - Don't use error validation for non-blocking messages
 - Don't require users to re-enter data after a validation error
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -260,20 +258,24 @@ No keyboard interaction — Form is a layout/wiring layer. Interactive elements 
 
 ### Component Structure
 
-Form is a React Hook Form integration layer — it provides accessibility wiring and state management, not visual components. The visual appearance is determined by child components (Input, Select, Checkbox, etc.) which have their own component specs.
+The component contains no dedicated Form component variants. The page shows a single Alert instance as a reference to the React-specific Form integration pattern.
+
+Form is a React Hook Form integration layer — it provides accessibility wiring and state management, not visual components. The visual appearance is determined by child components (Input, Select, Checkbox, etc.) which have their own component pages.
+
+The component page directs users to the Blocks page for form composition examples.
 
 ### CSS Variable Mapping
 
 Form has no component-specific design tokens. It is a wiring layer that delegates all visual styling to child components.
 
-The error Alert uses the same tokens documented in `alert.md`:
+The Alert instance on the Form page uses the same tokens documented in `alert.md`:
 
-| Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--card` | `--card` | Alert background |
-| `--border` | `--border` | Alert border |
-| `--foreground` | `--foreground` | Title text |
-| `--muted-foreground` | `--muted-foreground` | Description text |
+| Token | CSS Variable / Tailwind Utility | Light Value | Purpose | Mode-Dependent |
+|-------------|--------------------------------|-------------|---------|----------------|
+| `var(--card)` | `--card` | `white` | Alert background | Yes |
+| `var(--border)` | `--border` | `#e4e4e7` | Alert border | Yes |
+| `var(--foreground)` | `--foreground` | `#09090b` | Title text | Yes |
+| `var(--muted-foreground)` | `--muted-foreground` | `#71717a` | Description text | Yes |
 
 ### Theme Behavior
 

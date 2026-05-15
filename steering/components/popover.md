@@ -37,8 +37,6 @@ A floating panel that appears anchored to a trigger element, built on Radix UI's
 - Don't launch a modal from within a popover
 - Don't launch a popover from within a popover
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -267,25 +265,28 @@ Popover:
 .Popover Example Content:
 - Single variant showing a form layout example (labels, inputs, grid)
 
-- Container: flex column, p 16px, rounded
-- Background: popover, border
-- Shadow: shadow-md
-- Width: 367px
-
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `--popover` | `--popover` | Popover background |
 | `--border` | `--border` | Popover border |
-| `--muted-foreground` | `--muted-foreground` | Description text color |
+| `--background` | `--background` | Placeholder content background |
+| `--muted-foreground` | `--muted-foreground` | Placeholder text color |
+| `border-width` | `border-width` | Border width |
 | `--radius` | `--radius` | Popover border radius |
-| `p-4` (16px) | `padding` | Popover padding |
-| `font-sans` | `--font-sans` | Font family |
-| `shadow-md` | `box-shadow` | Shadow |
+| `padding` | `padding` | Popover padding |
+| `padding` | `padding` | Placeholder content padding |
+| `box-shadow` | `box-shadow` | Shadow color (both layers) |
+| `box-shadow` | `box-shadow` offset-y | Shadow layer 1 offset |
+| `box-shadow` | `box-shadow` blur | Shadow layer 1 blur |
+| `box-shadow` | `box-shadow` offset-y | Shadow layer 2 offset |
+| `box-shadow` | `box-shadow` blur | Shadow layer 2 blur |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-weight` | Content font weight |
+| `leading-6` | `line-height` | Content line height |
 
 ### Theme Behavior
 

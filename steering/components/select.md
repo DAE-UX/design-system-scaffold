@@ -397,7 +397,7 @@ Radix UI Select provides built-in `listbox` role on the content and `option` rol
 
 ### Component Structure
 
-Component is organized into the trigger component and sub-components:
+Component organizes Select into the trigger component and sub-components:
 
 Select (trigger):
 | Variant Property | Values |
@@ -413,23 +413,25 @@ Select (trigger):
 
 Select Menu (assembled dropdown — no variant properties)
 
-- Trigger uses `px-3`, `py-2`, `min-w-[64px]`, `max-w-[448px]`, default width `240px`
-
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
-| `--input` | `--input` | Trigger background (at 30% opacity) and border |
+|-------------|-------------|---------|
+| `--bg-input-30` | `--input` (at 30% opacity) | Trigger background |
+| `--input` | `--input` | Trigger border |
 | `--muted-foreground` | `--muted-foreground` | Placeholder text color |
 | `--foreground` | `--foreground` | Filled value text color |
-| `--radius` (derived) | `border-radius` | Trigger border radius |
-| `shadow-2xs` | `box-shadow` | Trigger shadow |
-| `px-3` (12px) | `padding-inline` | Trigger horizontal padding |
-| `py-2` (8px) | `padding-block` | Trigger vertical padding |
-| `font-sans` | `--font-sans` | Font family |
-| `text-sm` (14px) | `font-size` | Trigger text size |
+| `border-width` | `border-width` | Trigger border width |
+| `--radius` (derived) | `border-radius` (derived) | Trigger border radius |
+| `box-shadow` | `box-shadow` | Trigger shadow |
+| `padding` | `padding-inline` | Trigger horizontal padding |
+| `padding` | `padding-block` / `gap` | Trigger vertical padding and icon gap |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-normal` | `font-weight` | Placeholder font weight |
+| `--text-sm` | `font-size` | Trigger text size |
+| `leading-5` | `line-height` | Trigger text line height |
 
 ### Theme Behavior
 

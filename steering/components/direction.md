@@ -29,8 +29,6 @@ A provider component that sets the text direction for the application, enabling 
 #### Don't
 - Don't mix directions within the same content block without clear visual separation.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts

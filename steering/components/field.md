@@ -39,8 +39,6 @@ A layout system for composing form fields with labels, descriptions, validation 
 - Don't omit labels
 - Don't mark required fields with asterisks when most fields are required
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -423,6 +421,8 @@ No keyboard interaction — Field is a layout container. Interactive elements in
 
 ### Component Structure
 
+The component contains:
+
 **Field** — 2 variant properties:
 
 | Variant Property | Values |
@@ -430,26 +430,36 @@ No keyboard interaction — Field is a layout container. Interactive elements in
 | Data invalid | False, True |
 | Display | Desc last, Desc second, Horizontal |
 
-Field layout: flex column (gap 12px, width 270px) → Label (text-sm, font-medium) + Input (background, border, rounded, shadow-xs, px 12px, py 8px) + Description (text-sm, muted-foreground)
+Total: 6 variant combinations
 
-**Field legend** — Types: Legend, Label
+**Field legend** — 1 variant property:
 
-**Fieldset**: Full fieldset with legend, description, and multiple field rows
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Legend, Label |
+
+**Fieldset**:
+- Full fieldset with legend, description, and multiple field rows
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--foreground)` | `--foreground` | Label text color |
 | `var(--muted-foreground)` | `--muted-foreground` | Description text, placeholder text |
 | `var(--input)` | `--input` | Input border color |
-| `--radius` (derived) | `--radius` | Input border radius |
-| `px-3` (12px) | `px-3` | Input horizontal padding |
-| `font-sans` | `--font-sans` | Font family |
-| `font-medium` (500) | `font-medium` | Label font weight |
-| `text-sm` (14px) | `text-sm` | All text size |
+| `--background` (effective) | `--background` (effective) | Input background |
+| `--radius` (derived) | `--radius` (derived) | Input border radius |
+| `border-width` | `border` | Input border width |
+| `padding` (3 units) | `px-3` / `gap-3` | Input horizontal padding, field gap |
+| `padding` (2 units) | `py-2` | Input vertical padding |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-medium` | Label font weight |
+| `font-normal` | `font-normal` | Description and placeholder weight |
+| `text-sm` | `text-sm` | All text size |
+| `leading-5` | `leading-5` | Text line height |
 | `shadow-xs` | `shadow-xs` | Input box shadow |
 
 ### Theme Behavior

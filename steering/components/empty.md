@@ -34,8 +34,6 @@ A container for displaying empty states when no data or content is available.
 - Don't leave empty states blank — always provide guidance.
 - Don't use generic messages ("No data") — be specific about what's missing and what to do.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -349,30 +347,47 @@ No keyboard interaction — Empty is a static container. Interactive elements in
 
 ### Component Structure
 
-**Empty Media** — Types: Icon, Avatar, Avatar Group
+The component contains:
 
-**Empty Content** — Types: Single Button, 2 Buttons - Vert, 2 Buttons - Horiz, 3 Buttons, Input & Description
+**Empty** (composed):
+- Full empty state with icon, title, description, and action buttons
 
-Layout: flex column (gap 12px, width 300px, center) → Empty Header + Empty Content
-Header: flex column (gap 8px, max-w 384px, center) → Media + Copy block (Title + Description)
-Media (Icon type): muted bg, padding 8px, rounded → icon (24×24px)
-Content: flex column (gap 8px, max-w 384px, center) → Button row(s) + optional link
+**.Empty Media** — 1 variant property:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Icon, Avatar, Avatar Group |
+
+**.Empty Content** — 1 variant property:
+
+| Variant Property | Values |
+|-----------------|--------|
+| Type | Single Button, 2 Buttons - Vert, 2 Buttons - Horiz, 3 Buttons, Input & Description |
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--foreground)` | `--foreground` | Title text color |
-| `var(--muted-foreground)` | `--muted-foreground` | Description text |
+| `var(--muted-foreground)` | `--muted-foreground` | Description text, secondary button text, link button text |
 | `var(--muted)` | `--muted` | Icon container background |
 | `var(--primary)` | `--primary` | Primary button background |
-| `--radius` (derived) | `--radius` | Icon container and button border radius |
-| `gap-3` (12px) | `gap-3` | Root vertical gap |
-| `font-sans` | `--font-sans` | Font family |
-| `text-lg` (18px) | `text-lg` | Title text size |
-| `text-sm` (14px) | `text-sm` | Description and button text size |
+| `var(--primary-foreground)` | `--primary-foreground` | Primary button text |
+| `var(--input)` | `--input` | Secondary button border |
+| `--radius` (derived) | `--radius` (derived) | Icon container and button border radius |
+| `padding` (4 units) | `px-4` | Button horizontal padding |
+| `padding` (3 units) | `gap-3` | Empty root vertical gap |
+| `padding` (2 units) | `gap-2` / `p-2` | Header gap, content gap, icon padding, button gap |
+| `--font-sans` | `--font-sans` | Font family |
+| `font-medium` | `font-medium` | Title and button text weight |
+| `font-normal` | `font-normal` | Description text weight |
+| `text-lg` | `text-lg` | Title text size |
+| `text-sm` | `text-sm` | Description and button text size |
+| `leading-8` | `leading-8` | Title line height |
+| `leading-5` | `leading-5` | Description and button text line height |
+| `shadow-2xs` | `shadow-2xs` | Button box shadow |
 
 ### Theme Behavior
 

@@ -3,9 +3,10 @@
 ## Metadata
 
 - **Name:** Calendar Template
-- **Source:** shadCN
+- **Source:** shadCN (`https://ui.shadcn.com/`)
 - **Category:** Template (layout blueprint)
 - **Uses:** Calendar, Sidebar (component), Card, Button, Popover, Select, Separator
+- **Design reference:** (see component documentation)
 
 ## Layout Structure
 
@@ -13,20 +14,20 @@ Full-page calendar application layout. Organizes a calendar view as the primary 
 
 The primary content area displays a calendar in month, week, or day view. A secondary sidebar or panel may provide event details, mini-calendar navigation, or filters.
 
-```
+```text
 +--------------------------------------------------+
 | SidebarProvider                                  |
 | +------------+-----------------------------------+
-| |  Sidebar   |  SidebarInset                     |
-| |            |  +-------------------------------+|
-| |  Header    |  | Header (trigger + nav + view) ||
-| |  -----     |  +-------------------------------+|
-| |  Mini-Cal  |  |                               ||
-| |  -----     |  |  Calendar View                ||
-| |  Filters   |  |  (month / week / day grid)    ||
-| |  -----     |  |                               ||
-| |  Upcoming  |  |                               ||
-| |            |  +-------------------------------+|
+| | Sidebar   | SidebarInset                     |
+| | | +-------------------------------+|
+| | Header    | | Header (trigger + nav + view) ||
+| | -----     | +-------------------------------+|
+| | Mini-Cal  | | ||
+| | -----     | | Calendar View                ||
+| | Filters   | | (month / week / day grid)    ||
+| | -----     | | ||
+| | Upcoming  | | ||
+| | | +-------------------------------+|
 | +------------+-----------------------------------+
 +--------------------------------------------------+
 ```
@@ -50,11 +51,11 @@ The primary content area displays a calendar in month, week, or day view. A seco
 | Tablet (md-lg) | Sidebar collapsible via trigger. Calendar grid may reduce visible days or switch to a more compact layout. View switcher uses Select dropdown. |
 | Mobile (<md) | Sidebar renders as Sheet overlay. Calendar defaults to day or agenda view. Mini-calendar accessible via Popover trigger. Navigation simplified to prev/next with date display. |
 
-## Component Reference
+## Design Reference
 
-### Layout Variants
+### Component Structure
 
-21 calendar layout variants are available:
+The design page contains 21 calendar layout variants:
 
 | Variant | Description |
 |---------|-------------|
@@ -68,6 +69,9 @@ The primary content area displays a calendar in month, week, or day view. A seco
 | Calendar 08-10 | Variations on month/week layouts with different sidebar configurations |
 | Calendar 11-15 | Variations with different header styles, view switchers, and filter panels |
 | Calendar 16-21 | Additional layout variations including split views, overlay panels, and compact mobile layouts |
+| Calendar 31 | Extended variant with additional features |
+
+Each variant includes Desktop and Mobile breakpoint frames where applicable.
 
 ### Theme Behavior
 

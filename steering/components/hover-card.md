@@ -33,8 +33,6 @@ A popup card that appears when hovering over a trigger element, built on Radix U
 - Don't use for content that requires interaction.
 - Don't nest hover cards.
 
-Sources: shadCN, Radix UI
-
 ## API
 
 ### Parts
@@ -237,19 +235,28 @@ No variants — Hover Card has a single visual style.
 
 ### Component Structure
 
-Single hover card container with content area. Layout: popover bg, border, rounded, shadow-md, p 16px, overflow clip, width 320px.
+The component contains:
+
+**Hover Card** (composed):
+- Single hover card container with placeholder content area
+
+**.Hover Card Example Content**:
+- Example content layout for hover card body
 
 ### CSS Variable Mapping
 
-CSS variable mappings for this component. Values are defined in the active theme file (e.g., `default.md`), not here.
+
 
 | Token | CSS Variable | Purpose |
-|-------|-------------|---------|
+|-------------|-------------|---------|
 | `var(--popover)` | `--popover` | Card background |
 | `var(--border)` | `--border` | Card border |
-| `--radius` (derived) | `--radius` | Card border radius |
-| `p-4` (16px) | `p-4` | Card padding |
-| `shadow-md` | `shadow-md` | Card box shadow |
+| `var(--background)` | `--background` | Placeholder background |
+| `var(--muted-foreground)` | `--muted-foreground` | Placeholder text |
+| `--radius` (derived) | `--radius` (derived) | Card border radius |
+| `border-width` | `border` | Card border width |
+| `padding` (4 units) | `p-4` | Card padding |
+| `shadow-md` | `shadow-md` | Card box shadow (2-layer) |
 
 ### Theme Behavior
 
